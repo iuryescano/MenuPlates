@@ -1,10 +1,11 @@
 import { Container } from "./styles";
+import { Header } from "../../components/Header/";
 
 export function Home() {
   return (
     <Container>
+      <Header />
       <main>
-        <link rel="stylesheet" href="dwda" />
       </main>
     </Container>
   )
