@@ -66,6 +66,7 @@ export const OrdersBox = styled.div`
   font-size: 16px;
   text-align: center;
   gap: 0.5rem;
+  font-family: 'Poppins';
 `;
 
 // Estilo para o botão de sair
