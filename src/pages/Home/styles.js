@@ -55,15 +55,24 @@ export const Description = styled.p`
 `;
 
 export const Refecbox = styled.div`
-  margin-top: 3.87rem;
-  border: 1px solid red;
-  height: 33.10rem;
+  margin-top: 63px; /* Define a distância do Banner para o título */
   width: 70rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  gap: 23px; /* Define a distância entre o título e o Card */
+`;
+
+export const CardBox = styled.div`
+  width: 70rem;
+  display: flex;
+  gap: 2.5rem; /* Define a distância entre o título e o Card */
 `;
 
 export const TitleRefec = styled.h1`
   font-size: 2rem; /* Altere o tamanho da fonte conforme necessário */
   font-family: 'Poppins';
   font-weight: 400;
-  margin: 0; /* Remove margens padrão */
+  margin-top: 0;
 `;
