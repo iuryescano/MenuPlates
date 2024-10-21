@@ -1,6 +1,8 @@
 import { Container, Banner, SvgImage, TextContainer, Title, Description, Refecbox, TitleRefec } from "./styles";
 import { Header } from "../../components/Header/";
 import yourSvgImage from '../../assets/maskgroup.png'; // Altere para o caminho correto da sua imagem SVG
+import camarao_m from '../../assets/camarao_g.png'
+import { Card } from "../../components/Card/";
 
 export function Home() {
   return (
@@ -15,7 +17,8 @@ export function Home() {
           </TextContainer>
         </Banner>
         <Refecbox>
-          <TitleRefec font-size={"10px"}>Refeições</TitleRefec>
+          <TitleRefec>Refeições</TitleRefec>
+          <Card imageSrc={camarao_m} title = {"Teste"} description= {"Teste descricao"} price={45}></Card>
         </Refecbox>
 
       </main>
