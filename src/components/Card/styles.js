@@ -5,16 +5,24 @@ export const CardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative; /* Necessário para posicionar o coração */
-  width: 304px;
+  position: relative;
   height: 462px;
   padding: 20px;
   border-radius: 8px;
   background-color: #00070A;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  color: #FFF; /* Texto branco */
+  color: #FFF;
   border-radius: 8px;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Adicionando transição */
+  
+  &.slide-left {
+    transform: translateX(-50%); /* Move o card para a esquerda */
+  }
+  
+  &.slide-right {
+    transform: translateX(50%); /* Move o card para a direita */
+  }
 `;
 
 export const DishImage = styled.img`
@@ -37,26 +45,25 @@ export const DishDescription = styled.p`
 `;
 
 export const DishPrice = styled.span`
-  font-size: 18px;
-  color: #007bff;
-  font-weight: bold;
+  font-size: 26px;
+  color: #82F3FF;
   margin-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
 `;
 
 export const QuantityControl = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
 
   button {
-    background-color: #f0f0f0;
+    background-color: #00070A;
     border: none;
     padding: 5px 10px;
     font-size: 18px;
     cursor: pointer;
     border-radius: 4px;
-    color: #000;
+    color: #FFF;
   }
 
   span {
@@ -68,7 +75,7 @@ export const QuantityControl = styled.div`
 `;
 
 export const IncludeButton = styled.button`
-  background-color: #007bff;
+  background-color: red;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -79,7 +86,7 @@ export const IncludeButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: red;
   }
 `;
 
@@ -91,7 +98,15 @@ export const FavoriteIcon = styled.div`
 
   svg {
     font-size: 24px;
-    color: ${({ favorited }) => (favorited ? "red" : "#FFF")};
+    color: ${({ $isFavorited }) => ($isFavorited ? "red" : "none")}; // Prefixo $ para transient props
     transition: color 0.3s ease;
+    
   }
 `;
+
+export const Includerefec = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+`

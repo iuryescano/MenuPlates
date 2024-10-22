@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; 
 import { 
   CardContainer, 
   DishImage, 
@@ -7,11 +7,12 @@ import {
   DishPrice, 
   QuantityControl, 
   IncludeButton, 
-  FavoriteIcon 
+  FavoriteIcon,
+  Includerefec
 } from "./styles";
 import { FaHeart } from "react-icons/fa"; // Ícone de coração
 
-export function Card({ imageSrc, title, description, price }) {
+export function Card({ imageSrc, title, description, price, isVisible, animationClass }) {
   const [quantity, setQuantity] = useState(0);
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -21,8 +22,8 @@ export function Card({ imageSrc, title, description, price }) {
   const toggleFavorite = () => setIsFavorited(!isFavorited);
 
   return (
-    <CardContainer>
-      <FavoriteIcon onClick={toggleFavorite} favorited={isFavorited}>
+    <CardContainer className={animationClass} style={{ opacity: isVisible ? 1 : 0.5 }}>
+      <FavoriteIcon onClick={toggleFavorite} $isFavorited={isFavorited}>
         <FaHeart />
       </FavoriteIcon>
       <DishImage src={imageSrc} alt={title} />
@@ -30,13 +31,14 @@ export function Card({ imageSrc, title, description, price }) {
       <DishDescription>{description}</DishDescription>
       <DishPrice>R$ {price.toFixed(2)}</DishPrice>
 
-      <QuantityControl>
-        <button onClick={handleDecrease}>-</button>
-        <span>{quantity}</span>
-        <button onClick={handleIncrease}>+</button>
-      </QuantityControl>
-
-      <IncludeButton onClick={() => alert(`Incluído ${quantity} ${title}(s)`)}>Incluir</IncludeButton>
+      <Includerefec>
+        <QuantityControl>
+          <button onClick={handleDecrease}>-</button>
+          <span>{quantity}</span>
+          <button onClick={handleIncrease}>+</button>
+        </QuantityControl>
+        <IncludeButton onClick={() => alert(`Incluído ${quantity} ${title}(s)`)}>Incluir</IncludeButton>
+      </Includerefec>
     </CardContainer>
   );
 }

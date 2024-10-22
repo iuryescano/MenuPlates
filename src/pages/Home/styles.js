@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Banner = styled.div`
-  position: relative; /* Para que a imagem possa se posicionar em relação ao Banner */
+  position: relative;
   margin-top: 10.25rem;
   background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
   height: 16.25rem;
@@ -24,55 +24,117 @@ export const Banner = styled.div`
 `;
 
 export const SvgImage = styled.img`
-  position: absolute; /* Permite que a imagem seja posicionada em relação ao Banner */
-  left: -4rem; /* Posiciona a imagem à esquerda */
-  top: 105%; /* Centraliza verticalmente */
-  transform: translateY(-100%); /* Ajusta para que a imagem fique centralizada */
-  width: auto; /* Ou defina uma largura específica */
-  height: 150%; /* Ajusta a altura conforme necessário */
+  position: absolute;
+  left: -4.5rem;
+  top: 105%;
+  transform: translateY(-100%);
+  width: auto;
+  height: 150%;
 `;
 
 export const TextContainer = styled.div`
-  display: relative; /* Para o texto se posicionar em relação ao Banner */
-  color: white; /* Altere conforme necessário */
-  text-align: left; /* Alinha o texto à esquerda */
-  margin-left: 37rem; /* Espaçamento à esquerda */
+  color: white;
+  text-align: left;
+  margin-left: 37rem;
   text-align: center;
 `;
 
 export const Title = styled.h1`
-  font-size: 2.5rem; /* Altere o tamanho da fonte conforme necessário */
+  font-size: 2.5rem;
   font-family: 'Poppins';
   font-weight: 400;
-  margin: 0; /* Remove margens padrão */
+  margin: 0;
+`;
+
+export const Refecdad = styled.div`
+  display: flex;
+  flex-direction: column;
+  > h1 {
+    margin-top: 2.5rem;
+  }
+
+`;
+
+export const TitleRefec = styled.h1`
+  font-size: 2rem;
+  font-family: 'Poppins';
+  font-weight: 400;
 `;
 
 export const Description = styled.p`
-  font-size: 1rem; /* Altere o tamanho da fonte conforme necessário */
-  margin-top: 0.5rem; /* Espaçamento entre o título e a descrição */
+  font-size: 1rem;
+  margin-top: 0.5rem;
   font-family: 'Roboto';
   opacity: 70%;
 `;
 
 export const Refecbox = styled.div`
-  margin-top: 63px; /* Define a distância do Banner para o título */
+  margin-top: 1rem;
   width: 70rem;
-  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-
-  gap: 23px; /* Define a distância entre o título e o Card */
+  gap: 23px;
+  position: relative; /* Para manter as setas e os gradientes posicionados corretamente */
 `;
 
 export const CardBox = styled.div`
-  width: 70rem;
   display: flex;
-  gap: 2.5rem; /* Define a distância entre o título e o Card */
+  overflow-x: hidden;
+  gap: 2.5rem;
+  width: 100%;
+  padding: 0 1rem; /* Para dar espaço para as setas nas laterais */
+  border-radius: 5px;
+  /* Adicionando gradientes para opacidade nas pontas */
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5rem;
+    z-index: 2; /* Mantém acima dos cards */
+    pointer-events: none; /* Permite clique nos cards mesmo sob o gradiente */
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, #000A0F, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, #000A0F, transparent);
+  }
 `;
 
-export const TitleRefec = styled.h1`
-  font-size: 2rem; /* Altere o tamanho da fonte conforme necessário */
-  font-family: 'Poppins';
-  font-weight: 400;
-  margin-top: 0;
+export const Arrow = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-30%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+  color: white;
+  padding: 10px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  transition: opacity 0.1s ease;
+  
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &.left {
+    left: 0; /* Fixado na esquerda do Refecbox */
+    opacity: 100% ;
+  }
+
+  &.right {
+    right: 0; /* Fixado na direita do Refecbox */
+  }
 `;
