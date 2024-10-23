@@ -46,29 +46,63 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const Refecdad = styled.div`
-  display: flex;
-  flex-direction: column;
-  > h1 {
-    margin-top: 2.5rem;
-  }
-
-`;
 
 export const TitleRefec = styled.h1`
   font-size: 2rem;
   font-family: 'Poppins';
   font-weight: 400;
-`;
+  `;
 
 export const Description = styled.p`
   font-size: 1rem;
   margin-top: 0.5rem;
   font-family: 'Roboto';
   opacity: 70%;
+  `;
+
+export const Refecdad = styled.div`
+    display: flex;
+    flex-direction: column;
+    > h1 {
+      margin-top: 2.5rem;
+    }
+  
+  `;
+export const Refecbox = styled.div`
+  margin-top: 1rem;
+  width: 70rem;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  position: relative; /* Para manter as setas e os gradientes posicionados corretamente */
 `;
 
-export const Refecbox = styled.div`
+export const Sobredad = styled.div`
+    display: flex;
+    flex-direction: column;
+    > h1 {
+      margin-top: 2.5rem;
+    }
+  
+  `;
+export const Sobrebox = styled.div`
+  margin-top: 1rem;
+  width: 70rem;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  position: relative; /* Para manter as setas e os gradientes posicionados corretamente */
+`;
+
+export const Drinkdad = styled.div`
+    display: flex;
+    flex-direction: column;
+    > h1 {
+      margin-top: 2.5rem;
+    }
+  
+  `;
+export const Drinkbox = styled.div`
   margin-top: 1rem;
   width: 70rem;
   display: flex;
