@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'; 
 import { Container, Banner, SvgImage, TextContainer, Title, Description, Refecbox, CardBox, TitleRefec, Arrow, Refecdad, Sobrebox, Sobredad, Drinkdad, Drinkbox } from "./styles";
 import { Header } from "../../components/Header/";
+import { Footer } from '../../components/Footer';
 import yourSvgImage from '../../assets/maskgroup.png';
 import camarao_m from '../../assets/camarao_g.png';
 import doce_m from '../../assets/doce_m.png';
@@ -180,8 +181,10 @@ export function Home() {
             </CardBox>
           </Drinkbox>
         </Drinkdad>
-
+        
+        
       </main>
+      <Footer />
     </Container> 
   );
 }
