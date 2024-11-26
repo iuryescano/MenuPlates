@@ -11,6 +11,7 @@ import {
   Includerefec
 } from "./styles";
 import { FaHeart } from "react-icons/fa"; // Ícone de coração
+import { Link } from "react-router-dom"
 
 export function Card({ imageSrc, title, description, price, isVisible, animationClass }) {
   const [quantity, setQuantity] = useState(0);
@@ -37,7 +38,10 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
           <span>{quantity}</span>
           <button onClick={handleIncrease}>+</button>
         </QuantityControl>
-        <IncludeButton onClick={() => alert(`Incluído ${quantity} ${title}(s)`)}>Incluir</IncludeButton>
+        <IncludeButton onClick={() => quantity > 0 && alert(`Incluído ${quantity} ${title}(s)`)}
+          disabled={quantity === 0}>
+          Incluir
+      </IncludeButton>
       </Includerefec>
     </CardContainer>
   );

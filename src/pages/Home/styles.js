@@ -44,6 +44,9 @@ export const Title = styled.h1`
   font-family: 'Poppins';
   font-weight: 400;
   margin: 0;
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 `;
 
 
@@ -63,17 +66,16 @@ export const Description = styled.p`
 export const Refecdad = styled.div`
     display: flex;
     flex-direction: column;
+    width: 70rem;
     > h1 {
       margin-top: 2.5rem;
     }
-  
   `;
+  
 export const Refecbox = styled.div`
   margin-top: 1rem;
-  width: 70rem;
   display: flex;
   flex-direction: column;
-  gap: 23px;
   position: relative; /* Para manter as setas e os gradientes posicionados corretamente */
 `;
 
@@ -130,14 +132,14 @@ export const CardBox = styled.div`
   }
 
   &::before {
-    left: 0;
-    background: linear-gradient(to right, #000A0F, transparent);
-  }
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 10, 15, 0.9), transparent);
+}
 
-  &::after {
-    right: 0;
-    background: linear-gradient(to left, #000A0F, transparent);
-  }
+&::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 10, 15, 0.9), transparent);
+}
 `;
 
 export const Arrow = styled.button`
@@ -160,7 +162,7 @@ export const Arrow = styled.button`
   }
 
   &:hover {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   &.left {

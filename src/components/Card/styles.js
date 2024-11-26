@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 462px;
+  height: 28rem;
   padding: 20px;
   border-radius: 8px;
   background-color: #00070A;
@@ -14,14 +14,14 @@ export const CardContainer = styled.div`
   text-align: center;
   color: #FFF;
   border-radius: 8px;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Adicionando transição */
-  
-  &.slide-left {
-    transform: translateX(-50%); /* Move o card para a esquerda */
-  }
-  
-  &.slide-right {
-    transform: translateX(50%); /* Move o card para a direita */
+
+  opacity: 0.6;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+
+  &.slide-left, &.slide-right {
+    opacity: 1;
+    transform: scale(1);
   }
 `;
 
@@ -59,7 +59,7 @@ export const QuantityControl = styled.div`
   button {
     background-color: #00070A;
     border: none;
-    padding: 5px 10px;
+    padding: 5px 1.5rem;
     font-size: 18px;
     cursor: pointer;
     border-radius: 4px;
@@ -82,7 +82,8 @@ export const IncludeButton = styled.button`
   font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
   transition: background-color 0.3s ease;
 
   &:hover {

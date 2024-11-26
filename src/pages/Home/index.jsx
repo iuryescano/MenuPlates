@@ -51,40 +51,25 @@ export function Home() {
   const [isScrollingDrink, setIsScrollingDrink] = useState(false);  // Estado para verificar se o carrossel de bebidas está rolando
 
   // Função para rolar o carrossel
-  const handleScroll = (direction, ref, scrollAmount, setScrollAmount, setIsScrolling, isScrolling, dataLength) => {
-    if (isScrolling) return;
+const handleScroll = (direction, ref, scrollAmount, setScrollAmount, setIsScrolling, isScrolling, dataLength) => {
+  if (isScrolling) return;
 
-    const cardWidth = ref.current.scrollWidth / dataLength;
-    const newScrollAmount = direction === 'right' 
-      ? scrollAmount + cardWidth 
-      : scrollAmount - cardWidth;
+  const cardWidth = ref.current.scrollWidth / dataLength;
+  const maxScrollAmount = ref.current.scrollWidth - ref.current.clientWidth;
+  const newScrollAmount = direction === 'right' 
+    ? Math.min(scrollAmount + cardWidth, maxScrollAmount)
+    : Math.max(scrollAmount - cardWidth, 0);
 
-    setScrollAmount(newScrollAmount);
-    setIsScrolling(true);
+  setScrollAmount(newScrollAmount);
+  setIsScrolling(true);
 
-    const cards = ref.current.children;
+  ref.current.scrollTo({
+    left: newScrollAmount,
+    behavior: 'smooth',
+  });
 
-    for (let card of cards) {
-      card.classList.remove('slide-left', 'slide-right');
-      if (direction === 'right') {
-        card.classList.add('slide-left');
-      } else {
-        card.classList.add('slide-right');
-      }
-    }
-
-    ref.current.scrollTo({
-      left: newScrollAmount,
-      behavior: 'smooth',
-    });
-
-    setTimeout(() => {
-      setIsScrolling(false);
-      for (let card of cards) {
-        card.classList.remove('slide-left', 'slide-right');
-      }
-    }, 200);
-  };
+  setTimeout(() => setIsScrolling(false), 200);
+};
 
   return (
     <Container>
