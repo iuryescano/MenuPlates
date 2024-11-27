@@ -38,8 +38,9 @@ export const Plate = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   border: 1px solid red;
+  padding: 1rem;
 
   > img {
     opacity: 75%;
@@ -49,5 +50,5 @@ export const Plate = styled.div`
 export const Text = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 `;
