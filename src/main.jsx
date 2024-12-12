@@ -4,14 +4,14 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from './styles/theme';
 import GlobalStyles from './styles/global';
-import { Details } from './pages/Details';
+import { NewPlate } from './pages/NewPlate';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Details />
+      <NewPlate />
     </ThemeProvider>
   </React.StrictMode>,
 )
