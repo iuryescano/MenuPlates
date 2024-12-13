@@ -85,3 +85,61 @@ export const PreviewImage = styled.img`
   border-radius: 0.5rem;
   border: 2px solid ${({ theme }) => theme.COLORS.GRAY_500};
 `;
+
+export const Name = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin-left: 1rem;
+  margin-top: 1.2rem;
+
+  > input {
+    width: 25rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    height: 3rem;
+  }
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  align-items: flex-start; /* Alinha todos os itens no topo */
+  gap: 1rem; /* Espaçamento horizontal entre os campos */
+`;
+
+export const CategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin-left: 1rem;
+  margin-top: 1.2rem;
+
+  > select {
+    width: 25rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    height: 3rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    padding-right: 2rem;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10"><path fill="%23ffffff" d="M7 10L0 0h14z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.7rem;
+    cursor: pointer;
+  }
+
+  > select:hover {
+    border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
+  }
+`;

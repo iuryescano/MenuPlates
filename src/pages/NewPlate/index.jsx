@@ -1,10 +1,19 @@
-import React from "react";
-import { Container, Content, BackPage, H1, ImageUploadSection, InputFile, PreviewImage } from "./styles";
+import React, { useState } from "react";
+import { 
+  Container, 
+  Content, 
+  BackPage, 
+  H1, 
+  ImageUploadSection, 
+  InputFile, 
+  Name, 
+  Flex, 
+  CategoryWrapper
+} from "./styles";
 import { IoIosArrowBack } from "react-icons/io";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { Header } from "../../components/Header/";
 import { Footer } from "../../components/Footer";
-import { useState } from "react";
 
 export function NewPlate() {
   const [image, setImage] = useState(null);
@@ -27,20 +36,34 @@ export function NewPlate() {
             voltar
           </BackPage>
           <H1>Adicionar prato</H1>
-          
-          <ImageUploadSection>
-            <p>Imagem do prato</p>
-            <label htmlFor="fileUpload">
-              <MdOutlineFileUpload size={"1.5rem"}/>
-              <span>Selecione imagem</span>
-              <InputFile 
-                id="fileUpload" 
-                type="file" 
-                accept="image/*" 
-                onChange={handleImageUpload} 
-              />
-            </label>
-          </ImageUploadSection>
+          <Flex>
+            <ImageUploadSection>
+              <p>Imagem do prato</p>
+              <label htmlFor="fileUpload">
+                <MdOutlineFileUpload size={"1.5rem"} />
+                <span>Selecione imagem</span>
+                <InputFile 
+                  id="fileUpload" 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleImageUpload} 
+                />
+              </label>
+            </ImageUploadSection>
+            <Name>
+              <p>Nome</p>
+              <input type="text" placeholder="Ex.: Salada Ceasar" />
+            </Name>
+            <CategoryWrapper>
+              <p>Categoria</p>
+              <select>
+                <option value="">Selecione uma categoria</option>
+                <option value="Refeicao">Refeição</option>
+                <option value="Sobremesa">Sobremesa</option>
+                <option value="Sucos">Sucos</option>
+              </select>
+            </CategoryWrapper>
+          </Flex>
         </Content>
       </main>
       <Footer /> {/* Fixo no final */}
