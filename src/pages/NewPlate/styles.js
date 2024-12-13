@@ -143,3 +143,17 @@ export const CategoryWrapper = styled.div`
     border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
   }
 `;
+
+export const Tags = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0rem 0rem 1.5rem;
+  gap: 0.8rem;
+
+  > div {
+    height: 2.5rem;
+    width: 41rem;
+    border-radius: 0.5rem;
+    background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+  }
+`;

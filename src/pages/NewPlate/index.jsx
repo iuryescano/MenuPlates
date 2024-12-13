@@ -8,6 +8,7 @@ import {
   InputFile, 
   Name, 
   Flex, 
+  Tags,
   CategoryWrapper
 } from "./styles";
 import { IoIosArrowBack } from "react-icons/io";
@@ -64,6 +65,12 @@ export function NewPlate() {
               </select>
             </CategoryWrapper>
           </Flex>
+          <Tags>
+            <p>Ingredientes</p>
+            <div>
+              
+            </div>
+          </Tags>
         </Content>
       </main>
       <Footer /> {/* Fixo no final */}
