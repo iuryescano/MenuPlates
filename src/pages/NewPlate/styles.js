@@ -16,6 +16,12 @@ export const Container = styled.div`
     flex-direction: column;
     flex: 1; /* Faz o conteúdo expandir para ocupar o espaço disponível */
   }
+
+  .tags {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 `;
 
 export const Content = styled.div`

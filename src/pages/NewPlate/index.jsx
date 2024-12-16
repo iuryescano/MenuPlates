@@ -14,6 +14,7 @@ import {
 import { IoIosArrowBack } from "react-icons/io";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { Header } from "../../components/Header/";
+import { PlateItem } from "../../components/PlateItem/";
 import { Footer } from "../../components/Footer";
 
 export function NewPlate() {
@@ -67,8 +68,9 @@ export function NewPlate() {
           </Flex>
           <Tags>
             <p>Ingredientes</p>
-            <div>
-              
+            <div className="tags">
+              <PlateItem value={"React"} isNew/>
+              <PlateItem isNew placeholder="Novo ingrediente"/>
             </div>
           </Tags>
         </Content>
