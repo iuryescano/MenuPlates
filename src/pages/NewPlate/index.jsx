@@ -20,6 +20,9 @@ import { Footer } from "../../components/Footer";
 export function NewPlate() {
   const [image, setImage] = useState(null);
 
+  const [ingredients, setIngredients] = useState([]); // Lista de ingredientes
+  const [newIngredient, setNewIngredient] = useState(""); // Input temporário para novo ingrediente
+
   // Função para lidar com o upload da imagem
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -27,6 +30,18 @@ export function NewPlate() {
       setImage(URL.createObjectURL(file)); // Cria uma URL temporária para a imagem
     }
   };
+
+  // Adicionar novo ingrediente
+  function handleAddIngredient() {
+    if (newIngredient.trim() === "") return; // Evita valores vazios
+    setIngredients((prevState) => [...prevState, newIngredient]); // Adiciona ingrediente
+    setNewIngredient(""); // Reseta o campo input
+  }
+
+  // Remover ingrediente da lista pelo índice
+  function handleRemoveIngredient(index) {
+    setIngredients((prevState) => prevState.filter((_, i) => i !== index));
+  }
 
   return (
     <Container>
@@ -66,11 +81,29 @@ export function NewPlate() {
               </select>
             </CategoryWrapper>
           </Flex>
+
+          {/* Tags para ingredientes */}
           <Tags>
             <p>Ingredientes</p>
             <div className="tags">
-              <PlateItem value={"React"} isNew/>
-              <PlateItem isNew placeholder="Novo ingrediente"/>
+              {/* Renderiza a lista de ingredientes */}
+              {ingredients.map((ingredient, index) => (
+                <PlateItem
+                  key={index}
+                  value={ingredient}
+                  onClick={() => handleRemoveIngredient(index)}
+                />
+              ))}
+
+              {/* Campo para adicionar novos ingredientes */}
+              <PlateItem
+                isNew
+                placeholder="Adicionar"
+                value={newIngredient}
+                onChange={(e) => setNewIngredient(e.target.value)}
+                onClick={handleAddIngredient}
+              />
+
             </div>
           </Tags>
         </Content>

@@ -1,23 +1,27 @@
-import { FiPlus, FiX } from 'react-icons/fi';
+import React from "react";
+import { FiPlus, FiX } from "react-icons/fi";
+import { Container } from "./styles";
 
-import { Container } from './styles';
-
-export function PlateItem({ isNew, value, onClick, ...rest}){
+export function PlateItem({ isNew, value, onClick, onChange, ...rest }) {
   return (
-    <Container isNew={isNew} onClick={onClick} {...rest}>
-      <input 
-        type='text' 
-        value={value} 
-        readOnly={!isNew} 
-        {...rest}/> 
+    <Container $isNew={isNew}>
+      {/* Input do ingrediente */}
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        readOnly={!isNew} // Desabilita edição para tags já criadas
+        {...rest}
+      />
 
-        <button 
-          type='button'
-          onClick={onClick}
-          className={isNew ? 'button-add' : 'button-delete'}
-        >
-          { isNew ? <FiPlus /> : <FiX />}
-        </button>
+      {/* Botão de ação */}
+      <button type="button" onClick={(e) => { 
+          e.stopPropagation(); // Impede propagação do clique para o container
+          onClick(); 
+        }}
+      >
+        {isNew ? <FiPlus /> : <FiX />} {/* Ícone muda conforme `isNew` */}
+      </button>
     </Container>
   );
 }

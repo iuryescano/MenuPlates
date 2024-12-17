@@ -19,7 +19,7 @@ export const Container = styled.div`
 
   .tags {
     display: flex;
-    justify-content: space-between;
+    gap: 0.5rem;
     flex-wrap: wrap;
   }
 `;
@@ -154,12 +154,12 @@ export const Tags = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5rem 0rem 0rem 1.5rem;
+  width: 42.5rem;
   gap: 0.8rem;
 
   > div {
-    height: 2.5rem;
-    width: 41rem;
     border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+    padding: 0.8rem 0.5rem 0.5rem;
   }
 `;
