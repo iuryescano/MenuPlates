@@ -154,12 +154,52 @@ export const Tags = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5rem 0rem 0rem 1.5rem;
-  width: 42.5rem;
+  width: 55.5rem;
   gap: 0.8rem;
 
-  > div {
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
     border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.COLORS.BLACK_800};
     padding: 0.8rem 0.5rem 0.5rem;
   }
+`;
+
+export const Price = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.4rem;
+    > input {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+      color: ${({ theme }) => theme.COLORS.WHITE};
+      height: 3.5rem;
+      width: 13rem;
+    }
+  `;
+
+export const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 0rem 0rem 1.5rem;
+  max-width: 95%;
+
+  > input {
+    height: 10.75rem;
+    width: 100%;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+    border:none;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    border-radius: 5px;
+  }
+
+  
 `;

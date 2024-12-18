@@ -9,6 +9,8 @@ import {
   Name, 
   Flex, 
   Tags,
+  Price,
+  Description,
   CategoryWrapper
 } from "./styles";
 import { IoIosArrowBack } from "react-icons/io";
@@ -83,29 +85,41 @@ export function NewPlate() {
           </Flex>
 
           {/* Tags para ingredientes */}
-          <Tags>
-            <p>Ingredientes</p>
-            <div className="tags">
-              {/* Renderiza a lista de ingredientes */}
-              {ingredients.map((ingredient, index) => (
-                <PlateItem
-                  key={index}
-                  value={ingredient}
-                  onClick={() => handleRemoveIngredient(index)}
-                />
-              ))}
+          <Flex>
+            <Tags>
+              <p>Ingredientes e Preço</p>
+              <div className="tags-and-price">
+                {/* Tags de ingredientes */}
+                <div className="tags">
+                  {ingredients.map((ingredient, index) => (
+                    <PlateItem
+                      key={index}
+                      value={ingredient}
+                      onClick={() => handleRemoveIngredient(index)}
+                    />
+                  ))}
 
-              {/* Campo para adicionar novos ingredientes */}
-              <PlateItem
-                isNew
-                placeholder="Adicionar"
-                value={newIngredient}
-                onChange={(e) => setNewIngredient(e.target.value)}
-                onClick={handleAddIngredient}
-              />
+                  {/* Input para adicionar novo ingrediente */}
+                  <PlateItem
+                    isNew
+                    placeholder="Adicionar"
+                    value={newIngredient}
+                    onChange={(e) => setNewIngredient(e.target.value)}
+                    onClick={handleAddIngredient}
+                  />
+                </div>
 
-            </div>
-          </Tags>
+              </div>
+            </Tags>
+            <Price>
+              <p>Preço</p>
+              <input type="number" placeholder="R$ 0.00" />
+            </Price>
+          </Flex>
+          <Description>
+            <p>Descrição</p>
+            <input type="text" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+          </Description>
         </Content>
       </main>
       <Footer /> {/* Fixo no final */}
