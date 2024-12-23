@@ -11,6 +11,7 @@ import {
   Tags,
   Price,
   Description,
+  SaveButton,
   CategoryWrapper
 } from "./styles";
 import { IoIosArrowBack } from "react-icons/io";
@@ -118,8 +119,9 @@ export function NewPlate() {
           </Flex>
           <Description>
             <p>Descrição</p>
-            <input type="text" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+            <textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
           </Description>
+          <SaveButton>Salvar alterações</SaveButton>
         </Content>
       </main>
       <Footer /> {/* Fixo no final */}

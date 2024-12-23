@@ -191,15 +191,39 @@ export const Description = styled.div`
   padding: 1.5rem 0rem 0rem 1.5rem;
   max-width: 95%;
 
-  > input {
+  > textarea {
     height: 10.75rem;
     width: 100%;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 1rem;
     background-color: ${({ theme }) => theme.COLORS.BLACK_800};
-    border:none;
+    border: none;
     color: ${({ theme }) => theme.COLORS.WHITE};
     border-radius: 5px;
+    resize: none; /* Impede redimensionamento */
+    font-size: 1rem; /* Ajusta o tamanho da fonte */
+    line-height: 1.5; /* Ajusta o espaçamento entre linhas */
+    text-align: left; /* Alinha o texto horizontalmente à esquerda */
+    vertical-align: top; /* Garante que o texto fique no topo */
+    overflow-y: auto; /* Permite rolagem vertical, se necessário */
+    box-sizing: border-box; /* Inclui padding e border no cálculo */
   }
+`;
 
-  
+export const SaveButton = styled.button`
+  margin-top: 1rem; /* Espaçamento acima */
+  margin-left: 80%; /* Espaçamento à esquerda */
+  width: 10.75rem;
+  height: 3rem;
+  background-color: #AB4D55;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darkred;
+  }
 `;
