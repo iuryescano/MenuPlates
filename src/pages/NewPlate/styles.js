@@ -211,7 +211,6 @@ export const Description = styled.div`
 
 export const SaveButton = styled.button`
   margin-top: 1rem; /* Espaçamento acima */
-  margin-left: 80%; /* Espaçamento à esquerda */
   width: 10.75rem;
   height: 3rem;
   background-color: #AB4D55;
@@ -230,7 +229,6 @@ export const SaveButton = styled.button`
 
 export const DeletePlate = styled.button`
   margin-top: 1rem; /* Espaçamento acima */
-  margin-left: 80%; /* Espaçamento à esquerda */
   width: 10.75rem;
   background-color: ${({ theme }) => theme.COLORS.BLACK_800};
   height: 3rem;
@@ -247,3 +245,8 @@ export const DeletePlate = styled.button`
   }
 `;
 
+export const Buttons = styled.div`
+display: flex;
+gap: 1rem;
+margin-left: 64%;
+`;

@@ -13,6 +13,7 @@ import {
   Description,
   SaveButton,
   DeletePlate,
+  Buttons,
   CategoryWrapper
 } from "./styles";
 import { IoIosArrowBack } from "react-icons/io";
@@ -123,8 +124,10 @@ export function NewPlate() {
             <textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
           </Description>
 
+          <Buttons>
           <DeletePlate>Deletar Prato</DeletePlate>
           <SaveButton>Salvar Alterações</SaveButton>
+          </Buttons>
         </Content>
 
       </main>
