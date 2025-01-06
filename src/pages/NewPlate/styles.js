@@ -227,3 +227,23 @@ export const SaveButton = styled.button`
     background-color: darkred;
   }
 `;
+
+export const DeletePlate = styled.button`
+  margin-top: 1rem; /* Espaçamento acima */
+  margin-left: 80%; /* Espaçamento à esquerda */
+  width: 10.75rem;
+  background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+  height: 3rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.BLACK_300};
+  }
+`;
+
