@@ -21,9 +21,8 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { Header } from "../../components/Header/";
 import { PlateItem } from "../../components/PlateItem/";
 import { Footer } from "../../components/Footer";
-import { Link } from "react-router-dom";
 
-export function NewPlate() {
+export function EditPlate() {
   const [image, setImage] = useState(null);
 
   const [ingredients, setIngredients] = useState([]); // Lista de ingredientes
@@ -56,11 +55,9 @@ export function NewPlate() {
         <Content>
           <BackPage>
             <IoIosArrowBack />
-            <Link to={"/"}>
-              voltar
-            </Link>
+            voltar
           </BackPage>
-          <H1>Adicionar prato</H1>
+          <H1>Editar prato</H1>
           <Flex>
             <ImageUploadSection>
               <p>Imagem do prato</p>
@@ -128,6 +125,7 @@ export function NewPlate() {
           </Description>
 
           <Buttons>
+          <DeletePlate>Deletar Prato</DeletePlate>
           <SaveButton>Salvar Alterações</SaveButton>
           </Buttons>
         </Content>

@@ -46,11 +46,6 @@ export const BackPage = styled.a`
   text-decoration: none;
   cursor: pointer;
   align-self: flex-start; /* Garante que o BackPage fique no início horizontalmente */
-
-  > a {
-    color: inherit;
-    text-decoration: none;
-  }
 `;
 
 export const H1 = styled.p`
@@ -253,5 +248,5 @@ export const DeletePlate = styled.button`
 export const Buttons = styled.div`
 display: flex;
 gap: 1rem;
-margin-left: 80.5%;
+margin-left: 64%;
 `;

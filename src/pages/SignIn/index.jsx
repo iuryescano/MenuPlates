@@ -10,6 +10,8 @@ import {
 } from "./styles";
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 export function SignIn() {
   return (
     <Container>
@@ -37,7 +39,7 @@ export function SignIn() {
               <ButtonEnter>
                 Entrar
               </ButtonEnter>
-              <a href="#">Criar uma conta</a>
+              <Link to={"/register"}>Criar uma conta</Link>
             </Border>
           </FildBox>
         </Content>

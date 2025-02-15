@@ -6,6 +6,7 @@ import { Tag } from "../../components/Tag";
 import salada_g from '../../assets/salada_g.png';
 import { IoIosArrowBack } from "react-icons/io";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Details() {
   const [quantity, setQuantity] = useState(0);
@@ -20,7 +21,9 @@ export function Details() {
         <div>
           <BackPage>
             <IoIosArrowBack />
-            voltar
+            <Link to={"/"}>
+              voltar
+            </Link>
           </BackPage>
           <Plate>
             <img src={salada_g} alt="salada" />

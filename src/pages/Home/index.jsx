@@ -41,6 +41,8 @@ export function Home() {
   const refecRef = useRef(null);
   const sobreRef = useRef(null);
   const drinkRef = useRef(null);  // Referência para o carrossel de bebidas
+  
+  
 
   // Estados separados para cada carrossel
   const [scrollAmountRefec, setScrollAmountRefec] = useState(0);

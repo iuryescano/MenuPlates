@@ -9,6 +9,7 @@ import {
   ButtonEnter
 } from "./styles";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function SignUp() {
   return (
@@ -41,7 +42,7 @@ export function SignUp() {
               <ButtonEnter>
                 Entrar
               </ButtonEnter>
-              <a href="#">Criar uma conta</a>
+              <Link to={"/"}>Já tenho uma conta</Link>
             </Border>
           </FildBox>
         </Content>

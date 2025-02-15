@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,9 +13,8 @@ export const CardContainer = styled.div`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   color: #FFF;
-  border-radius: 8px;
+  border: none;
 
-  opacity: 0.6;
   transform: scale(0.9);
   transition: opacity 0.4s ease, transform 0.4s ease;
 
@@ -96,12 +95,17 @@ export const FavoriteIcon = styled.div`
   top: 10px;
   right: 10px;
   cursor: pointer;
+  padding: 0.5rem;
 
   svg {
     font-size: 24px;
     color: ${({ $isFavorited }) => ($isFavorited ? "red" : "none")}; // Prefixo $ para transient props
     transition: color 0.3s ease;
     
+  }
+  a {
+    text-decoration: none;
+    color: #FFF;
   }
 `;
 
@@ -111,3 +115,4 @@ export const Includerefec = styled.div`
   align-items: center;
   justify-content: center;
 `
+

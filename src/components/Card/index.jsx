@@ -11,6 +11,7 @@ import {
   Includerefec
 } from "./styles";
 import { FaHeart } from "react-icons/fa"; // Ícone de coração
+import { PiPencilSimple } from "react-icons/pi"; // Ícone de lápis
 import { Link } from "react-router-dom"
 
 export function Card({ imageSrc, title, description, price, isVisible, animationClass }) {
@@ -22,11 +23,23 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
 
   const toggleFavorite = () => setIsFavorited(!isFavorited);
 
+  const isAdmin = true; // Isso será controlado futuramente via banco de dados
+
   return (
+    <Link to={"/details/1"}>
     <CardContainer className={animationClass} style={{ opacity: isVisible ? 1 : 0.5 }}>
+      {isAdmin ? (
+        <FavoriteIcon>
+          <Link to="/editplate/1">
+            <PiPencilSimple />
+          </Link>
+        </FavoriteIcon>
+      ):(      
       <FavoriteIcon onClick={toggleFavorite} $isFavorited={isFavorited}>
         <FaHeart />
-      </FavoriteIcon>
+      </FavoriteIcon>)
+      }
+
       <DishImage src={imageSrc} alt={title} />
       <DishTitle>{title}</DishTitle>
       <DishDescription>{description}</DishDescription>
@@ -44,5 +57,6 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
       </IncludeButton>
       </Includerefec>
     </CardContainer>
+    </Link>
   );
 }

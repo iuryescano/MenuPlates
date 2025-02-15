@@ -8,6 +8,11 @@ export const HeaderContainer = styled.header`
   align-items: center;
   background-color: ${({ theme }) => theme.COLORS.BLACK_600};
   gap: 2.5rem;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 // Estilo para o nome "MenuPlates"
