@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -110,3 +111,21 @@ export const QuantityControl = styled.div`
     color: #FFF; /* Cor branca para o texto da quantidade */
   }
 `;
+
+export const EditButton = styled(Link)`
+  background-color: #750310;
+  color: white;
+  border: none;
+  padding: 13px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color:rgb(80, 2, 11);
+  }
+`

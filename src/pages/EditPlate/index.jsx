@@ -54,12 +54,12 @@ export function EditPlate() {
       <Header /> {/* Fixo no topo */}
       <main>
         <Content>
-          <BackPage>
-            <IoIosArrowBack />
-            <Link to={"/"}>
-              voltar
-            </Link>
-          </BackPage>
+          <Link to={"/"}>
+            <BackPage>
+                <IoIosArrowBack />
+                  voltar
+            </BackPage>
+          </Link>
           <H1>Editar prato</H1>
           <Flex>
             <ImageUploadSection>

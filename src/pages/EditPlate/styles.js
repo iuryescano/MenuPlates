@@ -33,6 +33,11 @@ export const Content = styled.div`
 
   box-sizing: border-box; /* Inclui padding/border no cálculo da largura/altura */
   overflow-y: auto; /* Adiciona rolagem vertical somente se necessário */
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export const BackPage = styled.a`

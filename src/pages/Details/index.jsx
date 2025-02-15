@@ -1,6 +1,6 @@
 import { Header } from "../../components/Header/";
 import { Footer } from "../../components/Footer/";
-import { Container, BackPage, Plate, Text, Tags, Content, IncludeButton, Includerefec, QuantityControl } from "../Details/styles";
+import { Container, BackPage, Plate, Text, Tags, Content, IncludeButton, Includerefec, QuantityControl, EditButton } from "../Details/styles";
 import { Tag } from "../../components/Tag";
 
 import salada_g from '../../assets/salada_g.png';
@@ -13,6 +13,8 @@ export function Details() {
 
   const handleIncrease = () => setQuantity(quantity + 1);
   const handleDecrease = () => quantity > 0 && setQuantity(quantity - 1);
+
+  const isAdmin = true; // Isso será controlado futuramente via banco de dados
   
   return (
     <Container>
@@ -41,7 +43,11 @@ export function Details() {
                 <Tag title={"teste"}/>
               </Tags>
 
-              <Includerefec>
+              { isAdmin ? (
+                <EditButton to="/editplate/3">
+                  Editar
+                </EditButton>
+              ):(<Includerefec>
                 <QuantityControl>
                   <button  onClick={handleDecrease}>-</button>
                   <span>{quantity}</span>
@@ -51,6 +57,7 @@ export function Details() {
                   Incluir ∙ R$ 25,00
                 </IncludeButton>
               </Includerefec>
+              ) }
 
             </Content>
           </Plate>

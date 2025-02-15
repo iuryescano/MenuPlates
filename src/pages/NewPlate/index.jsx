@@ -55,8 +55,8 @@ export function NewPlate() {
       <main>
         <Content>
           <BackPage>
-            <IoIosArrowBack />
             <Link to={"/"}>
+            <IoIosArrowBack />
               voltar
             </Link>
           </BackPage>

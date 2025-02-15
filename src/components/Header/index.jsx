@@ -6,7 +6,7 @@ import { RxExit } from "react-icons/rx";
 import { Link } from 'react-router-dom';
 
 export function Header() {
-    const isAdmin = false; // Isso será controlado futuramente via banco de dados
+    const isAdmin = true; // Isso será controlado futuramente via banco de dados
 
     return (
     <HeaderContainer>
