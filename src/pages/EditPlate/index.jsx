@@ -21,6 +21,7 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { Header } from "../../components/Header/";
 import { PlateItem } from "../../components/PlateItem/";
 import { Footer } from "../../components/Footer";
+import { Link } from "react-router-dom";
 
 export function EditPlate() {
   const [image, setImage] = useState(null);
@@ -55,7 +56,9 @@ export function EditPlate() {
         <Content>
           <BackPage>
             <IoIosArrowBack />
-            voltar
+            <Link to={"/"}>
+              voltar
+            </Link>
           </BackPage>
           <H1>Editar prato</H1>
           <Flex>

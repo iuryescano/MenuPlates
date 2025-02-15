@@ -22,6 +22,12 @@ export const CardContainer = styled.button`
     opacity: 1;
     transform: scale(1);
   }
+
+ //remover hover do botao
+  &:hover {
+    transform: scale(1);
+    opacity: 100%;
+  }
 `;
 
 export const DishImage = styled.img`
