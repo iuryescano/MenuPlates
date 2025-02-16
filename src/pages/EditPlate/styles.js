@@ -40,7 +40,7 @@ export const Content = styled.div`
   }
 `;
 
-export const BackPage = styled.a`
+export const BackPage = styled.div`
   display: flex;
   align-items: center;
   gap: 0.2rem;

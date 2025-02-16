@@ -20,9 +20,14 @@ export const Container = styled.div`
       gap: 0.5rem;
     }
   }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
-export const BackPage = styled.a`
+export const BackPage = styled.div`
   display: flex;
   align-items: center;
   gap: 0.2rem;

@@ -33,11 +33,11 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
             <PiPencilSimple />
           </Link>
         </FavoriteIcon>
-      ):(      
-      <FavoriteIcon onClick={toggleFavorite} $isFavorited={isFavorited}>
-        <FaHeart />
-      </FavoriteIcon>)
-      }
+      ) : (      
+        <FavoriteIcon onClick={toggleFavorite} $isFavorited={isFavorited}>
+          <FaHeart />
+        </FavoriteIcon>
+      )}
 
       <Link to={"/details/1"} style={{ textDecoration: 'none', color: 'inherit' }}>
         <DishImage src={imageSrc} alt={title} />
@@ -48,12 +48,11 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
 
       <Includerefec>
         <QuantityControl>
-          <button onClick={handleDecrease}>-</button>
+          <button type="button" onClick={handleDecrease}>-</button>
           <span>{quantity}</span>
-          <button onClick={handleIncrease}>+</button>
+          <button type="button" onClick={handleIncrease}>+</button>
         </QuantityControl>
-        <IncludeButton onClick={() => quantity > 0 && alert(`Incluído ${quantity} ${title}(s)`)}
-          disabled={quantity === 0}>
+        <IncludeButton type="button" onClick={() => quantity > 0 && alert(`Incluído ${quantity} ${title}(s)`)}>
           Incluir
         </IncludeButton>
       </Includerefec>

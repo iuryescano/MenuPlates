@@ -22,6 +22,11 @@ export const Container = styled.div`
     gap: 0.5rem;
     flex-wrap: wrap;
   }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 export const Content = styled.div`
@@ -35,7 +40,7 @@ export const Content = styled.div`
   overflow-y: auto; /* Adiciona rolagem vertical somente se necessário */
 `;
 
-export const BackPage = styled.a`
+export const BackPage = styled.div`
   display: flex;
   align-items: center;
   gap: 0.2rem;

@@ -21,12 +21,13 @@ export function Details() {
       <Header />
       <main>
         <div>
+          <Link to={"/"}>
           <BackPage>
             <IoIosArrowBack />
-            <Link to={"/"}>
               voltar
-            </Link>
           </BackPage>
+          </Link>
+          
           <Plate>
             <img src={salada_g} alt="salada" />
             <Content>

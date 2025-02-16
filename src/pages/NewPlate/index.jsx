@@ -54,12 +54,12 @@ export function NewPlate() {
       <Header /> {/* Fixo no topo */}
       <main>
         <Content>
+          <Link to={"/"}>
           <BackPage>
-            <Link to={"/"}>
             <IoIosArrowBack />
               voltar
-            </Link>
           </BackPage>
+          </Link>
           <H1>Adicionar prato</H1>
           <Flex>
             <ImageUploadSection>
