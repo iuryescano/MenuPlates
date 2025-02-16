@@ -4,9 +4,13 @@ import { CiSearch  } from "react-icons/ci";
 import { PiReceipt } from "react-icons/pi";
 import { RxExit } from "react-icons/rx";
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
+
 
 export function Header() {
     const isAdmin = true; // Isso será controlado futuramente via banco de dados
+
+    const { signOut } = useAuth();
 
     return (
     <HeaderContainer>
@@ -38,8 +42,11 @@ export function Header() {
         </OrdersBox>
         )}
         
-        <LogoutButton>
-            <RxExit size={24} /> {/* Ícone de logout */}
+        
+        <LogoutButton onClick={signOut}>
+            <Link to={"/"}>
+                <RxExit size={24} /> {/* Ícone de logout */}
+            </Link>
         </LogoutButton>
         </HeaderContainer>
     );

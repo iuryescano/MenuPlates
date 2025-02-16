@@ -75,7 +75,7 @@ export const OrdersBox = styled.div`
 `;
 
 // Estilo para o botão de sair
-export const LogoutButton = styled.button`
+export const LogoutButton = styled.div`
   background-color: transparent;
   border: none;
   cursor: pointer;
