@@ -23,11 +23,25 @@ import { PlateItem } from "../../components/PlateItem/";
 import { Footer } from "../../components/Footer";
 import { Link } from "react-router-dom";
 
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+
 export function NewPlate() {
   const [image, setImage] = useState(null);
 
   const [ingredients, setIngredients] = useState([]); // Lista de ingredientes
   const [newIngredient, setNewIngredient] = useState(""); // Input temporário para novo ingrediente
+
+  const [title, setTitle] = useState(""); // Nome do prato
+  const [category, setCategory] = useState(""); // Categoria do prato
+  const [price, setPrice] = useState(""); // Preço do prato
+  const [description, setDescription] = useState(""); // Descrição do prato
+
+  const navigate = useNavigate();
+  
+  // Obtenha o user_id do localStorage
+  const user = JSON.parse(localStorage.getItem("@MenuPlate:user"));
+  const user_id = user ? user.id : null;
 
   // Função para lidar com o upload da imagem
   const handleImageUpload = (event) => {
@@ -49,16 +63,30 @@ export function NewPlate() {
     setIngredients((prevState) => prevState.filter((_, i) => i !== index));
   }
 
+  async function handleNewPlate() {
+    await api.post(`/plates/${user_id}`, {
+      Name,
+      price,
+      image,
+      description,
+      category,
+      ingredients
+    });
+
+    alert ("Prato cadastrado com sucesso!");
+    navigate("/");
+  }
+
   return (
     <Container>
       <Header /> {/* Fixo no topo */}
       <main>
         <Content>
           <Link to={"/"}>
-          <BackPage>
-            <IoIosArrowBack />
+            <BackPage>
+              <IoIosArrowBack />
               voltar
-          </BackPage>
+            </BackPage>
           </Link>
           <H1>Adicionar prato</H1>
           <Flex>
@@ -77,11 +105,14 @@ export function NewPlate() {
             </ImageUploadSection>
             <Name>
               <p>Nome</p>
-              <input type="text" placeholder="Ex.: Salada Ceasar" />
+              <input 
+                type="text"  
+                placeholder="Ex.: Salada Ceasar" 
+                onChange={e => setTitle(e.target.value)}/>
             </Name>
             <CategoryWrapper>
               <p>Categoria</p>
-              <select>
+              <select onChange={e => setCategory(e.target.value)}>
                 <option value="">Selecione uma categoria</option>
                 <option value="Refeicao">Refeição</option>
                 <option value="Sobremesa">Sobremesa</option>
@@ -93,7 +124,7 @@ export function NewPlate() {
           {/* Tags para ingredientes */}
           <Flex>
             <Tags>
-              <p>Ingredientes e Preço</p>
+              <p>Ingredientes</p>
               <div className="tags-and-price">
                 {/* Tags de ingredientes */}
                 <div className="tags">
@@ -114,7 +145,6 @@ export function NewPlate() {
                     onClick={handleAddIngredient}
                   />
                 </div>
-
               </div>
             </Tags>
             <Price>
@@ -124,14 +154,16 @@ export function NewPlate() {
           </Flex>
           <Description>
             <p>Descrição</p>
-            <textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+            <textarea 
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
+              onChange={e => setDescription(e.target.value)}
+              />
           </Description>
 
-          <Buttons>
-          <SaveButton>Salvar Alterações</SaveButton>
+          <Buttons onClick={handleNewPlate}>
+            <SaveButton>Salvar Alterações</SaveButton>
           </Buttons>
         </Content>
-
       </main>
       <Footer /> {/* Fixo no final */}
     </Container>
