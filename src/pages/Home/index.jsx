@@ -117,7 +117,7 @@ useEffect(() => {
                   <Card 
                     key={String(plates.id)} 
                     title={plates.Name}
-                    imageSrc={image} 
+                    imageSrc={plates.Image} 
                     description={plates.Description}
                     price={typeof plates.Price === 'number' ? plates.Price.toFixed(2) : 'N/A'} // Verificação para garantir que price é um número
                     isVisible={plates.id !== 0 && plates.id !== cardData.length - 1} 

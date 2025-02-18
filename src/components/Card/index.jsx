@@ -25,6 +25,10 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
 
   const isAdmin = true; // Isso será controlado futuramente via banco de dados
 
+  const imageURL = imageSrc 
+  ? `http://localhost:3333/files/${imageSrc}` 
+  : "URL-de-um-placeholder.png";
+
   return (
     <CardContainer className={animationClass} style={{ opacity: isVisible ? 1 : 0.5 }}>
       {isAdmin ? (
@@ -40,7 +44,7 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
       )}
 
       <Link to={"/details/1"} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <DishImage src={imageSrc} alt={title} />
+        <DishImage src={imageURL} alt={title} />
         <DishTitle>{title}</DishTitle>
         <DishDescription>{description}</DishDescription>
         <DishPrice>R$ {price}</DishPrice>
