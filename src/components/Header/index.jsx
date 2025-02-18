@@ -5,12 +5,29 @@ import { PiReceipt } from "react-icons/pi";
 import { RxExit } from "react-icons/rx";
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
+import { useState, useEffect } from 'react';
+import { api } from '../../services/api';
 
 
 export function Header() {
     const isAdmin = true; // Isso será controlado futuramente via banco de dados
 
     const { signOut } = useAuth();
+
+/*    const [search, setSearch] = useState("");
+
+    useEffect(() => {
+        async function fetchPlate() {
+            try {
+                const response = await api.get(`/plates?user_id=1&name=${search}`);
+                setPlates(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar pratos:", error);
+            }
+        }
+        fetchPlate();
+    }, [search]);
+*/
 
     return (
     <HeaderContainer>
@@ -28,7 +45,11 @@ export function Header() {
             <SearchIcon>
                 <CiSearch size={24} />
             </SearchIcon>
-            <SearchBar type="text" placeholder="Busque por pratos ou ingredientes" />
+            <SearchBar 
+                type="text" 
+                placeholder="Busque por pratos ou ingredientes" 
+                onChange={(e) => setSearch(e.target.value)}
+                />
         </SearchContainer>
 
         {isAdmin ? (

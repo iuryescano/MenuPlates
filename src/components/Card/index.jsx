@@ -43,7 +43,7 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
         <DishImage src={imageSrc} alt={title} />
         <DishTitle>{title}</DishTitle>
         <DishDescription>{description}</DishDescription>
-        <DishPrice>R$ {price.toFixed(2)}</DishPrice>
+        <DishPrice>R$ {price}</DishPrice>
       </Link>
 
       <Includerefec>

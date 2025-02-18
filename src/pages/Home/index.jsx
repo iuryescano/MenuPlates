@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'; 
+import React, { useRef, useState, useEffect } from 'react'; 
 import { Container, Banner, SvgImage, TextContainer, Title, Description, Refecbox, CardBox, TitleRefec, Arrow, Refecdad, Sobrebox, Sobredad, Drinkdad, Drinkbox } from "./styles";
 import { Header } from "../../components/Header/";
 import { Footer } from '../../components/Footer';
@@ -7,6 +7,7 @@ import camarao_m from '../../assets/camarao_g.png';
 import doce_m from '../../assets/doce_m.png';
 import drink_m from '../../assets/drink_m.png';
 import { Card } from "../../components/Card/";
+import { api } from '../../services/api';
 
 // Dados para os cards de refeições, sobremesas e bebidas
 const cardData = [
@@ -52,6 +53,12 @@ export function Home() {
   const [isScrollingSobre, setIsScrollingSobre] = useState(false);
   const [isScrollingDrink, setIsScrollingDrink] = useState(false);  // Estado para verificar se o carrossel de bebidas está rolando
 
+  const [ plates, setPlates ] = useState([]);
+
+  
+
+
+
   // Função para rolar o carrossel
 const handleScroll = (direction, ref, scrollAmount, setScrollAmount, setIsScrolling, isScrolling, dataLength) => {
   if (isScrolling) return;
@@ -72,6 +79,18 @@ const handleScroll = (direction, ref, scrollAmount, setScrollAmount, setIsScroll
 
   setTimeout(() => setIsScrolling(false), 200);
 };
+
+useEffect(() => {
+  async function fetchPlate() {
+      try {
+          const response = await api.get(`/plates?category=Refeicao`);
+          setPlates(response.data);
+      } catch (error) {
+          console.error("Erro ao buscar pratos:", error);
+      }
+  }
+  fetchPlate();
+}, [plates]);
 
   return (
     <Container>
@@ -94,17 +113,18 @@ const handleScroll = (direction, ref, scrollAmount, setScrollAmount, setIsScroll
                 &#9664; {/* Seta para a esquerda */}
               </Arrow>
 
-              {cardData.map((card, index) => (
-                <Card 
-                  key={index} 
-                  imageSrc={card.imageSrc} 
-                  title={card.title} 
-                  description={card.description} 
-                  price={card.price} 
-                  isVisible={index !== 0 && index !== cardData.length - 1} 
-                  animationClass={isScrollingRefec ? (scrollAmountRefec > 0 ? 'slide-left' : 'slide-right') : ''}
-                />
-              ))}
+              {plates.map(plates => (
+                  <Card 
+                    key={String(plates.id)} 
+                    title={plates.Name}
+                    imageSrc={image} 
+                    description={plates.Description}
+                    price={typeof plates.Price === 'number' ? plates.Price.toFixed(2) : 'N/A'} // Verificação para garantir que price é um número
+                    isVisible={plates.id !== 0 && plates.id !== cardData.length - 1} 
+                    animationClass={isScrollingRefec ? (scrollAmountRefec > 0 ? 'slide-left' : 'slide-right') : ''}
+                  />
+                ))
+              }
 
               <Arrow className="right" onClick={() => handleScroll('right', refecRef, scrollAmountRefec, setScrollAmountRefec, setIsScrollingRefec, isScrollingRefec, cardData.length)}>
                 &#9654; {/* Seta para a direita */}
