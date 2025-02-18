@@ -67,7 +67,7 @@ export function EditPlate() {
     
       try {
         // Envia um valor padrão para Image, pois a imagem será atualizada posteriormente
-        const response = await api.put(`/plates/${plateId}`, {
+        const response = await api.put(`/plates/${id}`, {
           Name: name,
           Image: image ? image.name : "default.jpg", // ou use "" se preferir
           Price: price,
