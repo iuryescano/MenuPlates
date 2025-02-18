@@ -143,7 +143,7 @@ export function NewPlate() {
                 <option value="">Selecione uma categoria</option>
                 <option value="Refeicao">Refeição</option>
                 <option value="Sobremesa">Sobremesa</option>
-                <option value="Sucos">Sucos</option>
+                <option value="Bebidas">Sucos</option>
               </select>
             </CategoryWrapper>
           </Flex>

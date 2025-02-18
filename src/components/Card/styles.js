@@ -7,6 +7,7 @@ export const CardContainer = styled.div`
   justify-content: center;
   position: relative;
   height: 28rem;
+  gap: 13px;
   padding: 20px;
   border-radius: 8px;
   background-color: #00070A;
@@ -33,7 +34,7 @@ export const CardContainer = styled.div`
 export const DishImage = styled.img`
   width: 176px;
   height: 176px;
-  border-radius: 8px;
+  border-radius: 50%;
   margin-bottom: 15px;
 `;
 
@@ -64,8 +65,9 @@ export const QuantityControl = styled.div`
   button {
     background-color: #00070A;
     border: none;
+    margin-top: 15px;
     padding: 5px 1.5rem;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 4px;
     color: #FFF;

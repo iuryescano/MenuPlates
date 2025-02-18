@@ -2,40 +2,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Container, Banner, SvgImage, TextContainer, Title, Description, Refecbox, CardBox, TitleRefec, Arrow, Refecdad, Sobrebox, Sobredad, Drinkdad, Drinkbox } from "./styles";
 import { Header } from "../../components/Header/";
 import { Footer } from '../../components/Footer';
+import { Link } from 'react-router-dom'; // Importando Link
 import yourSvgImage from '../../assets/maskgroup.png';
-import camarao_m from '../../assets/camarao_g.png';
-import doce_m from '../../assets/doce_m.png';
-import drink_m from '../../assets/drink_m.png';
 import { Card } from "../../components/Card/";
 import { api } from '../../services/api';
 
-// Dados para os cards de refeições, sobremesas e bebidas
-const cardData = [
-  { imageSrc: camarao_m, title: "Teste 1", description: "Teste descricao 1", price: 45 },
-  { imageSrc: camarao_m, title: "Teste 2", description: "Teste descricao 2", price: 45 },
-  { imageSrc: camarao_m, title: "Teste 3", description: "Teste descricao 3", price: 45 },
-  { imageSrc: camarao_m, title: "Teste 4", description: "Teste descricao 4", price: 45 },
-  { imageSrc: camarao_m, title: "Teste 5", description: "Teste descricao 5", price: 37 },
-  { imageSrc: camarao_m, title: "Teste 6", description: "Teste descricao 6", price: 45 },
-];
-
-const cardDataSobre = [
-  { imageSrc: doce_m, title: "Teste 1", description: "Teste descricao 1", price: 45 },
-  { imageSrc: doce_m, title: "Teste 2", description: "Teste descricao 2", price: 45 },
-  { imageSrc: doce_m, title: "Teste 3", description: "Teste descricao 3", price: 45 },
-  { imageSrc: doce_m, title: "Teste 4", description: "Teste descricao 4", price: 45 },
-  { imageSrc: doce_m, title: "Teste 5", description: "Teste descricao 5", price: 37 },
-  { imageSrc: doce_m, title: "Teste 6", description: "Teste descricao 6", price: 45 },
-];
-
-const cardDataDrink = [
-  { imageSrc: drink_m, title: "Drink 1", description: "Descrição drink 1", price: 15 },
-  { imageSrc: drink_m, title: "Drink 2", description: "Descrição drink 2", price: 20 },
-  { imageSrc: drink_m, title: "Drink 3", description: "Descrição drink 3", price: 25 },
-  { imageSrc: drink_m, title: "Drink 4", description: "Descrição drink 4", price: 18 },
-  { imageSrc: drink_m, title: "Drink 5", description: "Descrição drink 5", price: 22 },
-  { imageSrc: drink_m, title: "Drink 6", description: "Descrição drink 6", price: 20 },
-];
 
 export function Home() {
   // Referências separadas para cada carrossel
@@ -53,9 +24,9 @@ export function Home() {
   const [isScrollingSobre, setIsScrollingSobre] = useState(false);
   const [isScrollingDrink, setIsScrollingDrink] = useState(false);  // Estado para verificar se o carrossel de bebidas está rolando
 
-  const [ plates, setPlates ] = useState([]);
-
-  
+  const [ platesRefec, setPlatesRefec ] = useState([]);
+  const [ platesSobre, setPlatesSobremesas] = useState([]);
+  const [ plateBebi, setPlateBebi ] = useState([]);
 
 
 
@@ -81,16 +52,40 @@ const handleScroll = (direction, ref, scrollAmount, setScrollAmount, setIsScroll
 };
 
 useEffect(() => {
-  async function fetchPlate() {
+  async function fetchPlateRefeic() {
       try {
           const response = await api.get(`/plates?category=Refeicao`);
-          setPlates(response.data);
+          setPlatesRefec(response.data);
       } catch (error) {
           console.error("Erro ao buscar pratos:", error);
       }
   }
-  fetchPlate();
-}, [plates]);
+
+  async function fetchPlateSobre() {
+    try {
+        const response = await api.get(`/plates?category=Sobremesa`);
+        setPlatesSobremesas(response.data);
+    } catch (error) {
+        console.error("Erro ao buscar pratos:", error);
+    }
+}
+
+  async function fetchPlateBebi(){
+    try {
+      const response = await api.get(`/plates?category=Bebidas`);
+      setPlateBebi(response.data);
+    } catch (error) {
+        console.error("Erro ao buscar pratos:", error);
+    }
+  }
+
+  fetchPlateBebi()
+  fetchPlateSobre()
+  fetchPlateRefeic()
+}, [platesRefec, platesSobre]);
+
+
+
 
   return (
     <Container>
@@ -113,14 +108,17 @@ useEffect(() => {
                 &#9664; {/* Seta para a esquerda */}
               </Arrow>
 
-              {plates.map(plates => (
+              {platesRefec.map(platesRefec => (
+                
                   <Card 
-                    key={String(plates.id)} 
-                    title={plates.Name}
-                    imageSrc={plates.Image} 
-                    description={plates.Description}
-                    price={typeof plates.Price === 'number' ? plates.Price.toFixed(2) : 'N/A'} // Verificação para garantir que price é um número
-                    isVisible={plates.id !== 0 && plates.id !== cardData.length - 1} 
+                    key={String(platesRefec.id)}
+                    id={platesRefec.id}
+                    title={platesRefec.Name}
+                    onClick={() => handleDetails(platesRefec.id)}
+                    imageSrc={platesRefec.Image} 
+                    description={platesRefec.Description}
+                    price={typeof platesRefec.Price === 'number' ? platesRefec.Price.toFixed(2) : 'N/A'} // Verificação para garantir que price é um número
+                    isVisible={platesRefec.id !== 0 && platesRefec.id !== platesRefec.length - 1} 
                     animationClass={isScrollingRefec ? (scrollAmountRefec > 0 ? 'slide-left' : 'slide-right') : ''}
                   />
                 ))
@@ -142,17 +140,19 @@ useEffect(() => {
                 &#9664; {/* Seta para a esquerda */}
               </Arrow>
 
-              {cardDataSobre.map((card, index) => (
-                <Card 
-                  key={index} 
-                  imageSrc={card.imageSrc} 
-                  title={card.title} 
-                  description={card.description} 
-                  price={card.price} 
-                  isVisible={index !== 0 && index !== cardDataSobre.length - 1} 
-                  animationClass={isScrollingSobre ? (scrollAmountSobre > 0 ? 'slide-left' : 'slide-right') : ''}
-                />
-              ))}
+                {platesSobre.map(platesSobre => (
+                    <Card 
+                      key={String(platesSobre.id)} 
+                      id={platesSobre.id}
+                      title={platesSobre.Name}
+                      imageSrc={platesSobre.Image} 
+                      description={platesSobre.Description}
+                      price={typeof platesSobre.Price === 'number' ? platesSobre.Price.toFixed(2) : 'N/A'} // Verificação para garantir que price é um número
+                      isVisible={platesSobre.id !== 0 && platesSobre.id !== platesSobre.length - 1} 
+                      animationClass={isScrollingRefec ? (scrollAmountRefec > 0 ? 'slide-left' : 'slide-right') : ''}
+                    />
+                  ))
+                }
 
               <Arrow className="right" onClick={() => handleScroll('right', sobreRef, scrollAmountSobre, setScrollAmountSobre, setIsScrollingSobre, isScrollingSobre, cardDataSobre.length)}>
                 &#9654; {/* Seta para a direita */}
@@ -170,17 +170,20 @@ useEffect(() => {
                 &#9664; {/* Seta para a esquerda */}
               </Arrow>
 
-              {cardDataDrink.map((card, index) => (
-                <Card 
-                  key={index} 
-                  imageSrc={card.imageSrc} 
-                  title={card.title} 
-                  description={card.description} 
-                  price={card.price} 
-                  isVisible={index !== 0 && index !== cardDataDrink.length - 1} 
-                  animationClass={isScrollingDrink ? (scrollAmountDrink > 0 ? 'slide-left' : 'slide-right') : ''}
-                />
-              ))}
+              {plateBebi.map(plateBebi => (
+                    <Card 
+                      key={String(plateBebi.id)} 
+                      id={plateBebi.id}
+                      title={plateBebi.Name}
+                      imageSrc={plateBebi.Image} 
+                      description={plateBebi.Description}
+                      price={typeof plateBebi.Price === 'number' ? plateBebi.Price.toFixed(2) : 'N/A'} // Verificação para garantir que price é um número
+                      isVisible={plateBebi.id !== 0 && plateBebi.id !== plateBebi.length - 1} 
+                      animationClass={isScrollingRefec ? (scrollAmountRefec > 0 ? 'slide-left' : 'slide-right') : ''}
+                    />
+                  ))
+              }
+
 
               <Arrow className="right" onClick={() => handleScroll('right', drinkRef, scrollAmountDrink, setScrollAmountDrink, setIsScrollingDrink, isScrollingDrink, cardDataDrink.length)}>
                 &#9654; {/* Seta para a direita */}

@@ -14,7 +14,7 @@ import { FaHeart } from "react-icons/fa"; // Ícone de coração
 import { PiPencilSimple } from "react-icons/pi"; // Ícone de lápis
 import { Link } from "react-router-dom"
 
-export function Card({ imageSrc, title, description, price, isVisible, animationClass }) {
+export function Card({ id, imageSrc, title, description, price, isVisible, animationClass }) {
   const [quantity, setQuantity] = useState(0);
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -43,7 +43,7 @@ export function Card({ imageSrc, title, description, price, isVisible, animation
         </FavoriteIcon>
       )}
 
-      <Link to={"/details/1"} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link to={`/details/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
         <DishImage src={imageURL} alt={title} />
         <DishTitle>{title}</DishTitle>
         <DishDescription>{description}</DishDescription>
