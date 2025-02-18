@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import { FaHeart } from "react-icons/fa"; // Ícone de coração
 import { PiPencilSimple } from "react-icons/pi"; // Ícone de lápis
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export function Card({ id, imageSrc, title, description, price, isVisible, animationClass }) {
   const [quantity, setQuantity] = useState(0);
@@ -23,17 +23,18 @@ export function Card({ id, imageSrc, title, description, price, isVisible, anima
 
   const toggleFavorite = () => setIsFavorited(!isFavorited);
 
-  const isAdmin = true; // Isso será controlado futuramente via banco de dados
+  const isAdmin = true; // Esse valor pode vir do contexto do usuário
 
   const imageURL = imageSrc 
-  ? `http://localhost:3333/files/${imageSrc}` 
-  : "URL-de-um-placeholder.png";
+    ? `http://localhost:3333/files/${imageSrc}` 
+    : "URL-de-um-placeholder.png";
 
   return (
     <CardContainer className={animationClass} style={{ opacity: isVisible ? 1 : 0.5 }}>
       {isAdmin ? (
         <FavoriteIcon>
-          <Link to="/editplate/1">
+          {/* Redireciona para a página de edição passando o id do prato */}
+          <Link to={`/editplate/${id}`}>
             <PiPencilSimple />
           </Link>
         </FavoriteIcon>
@@ -43,6 +44,7 @@ export function Card({ id, imageSrc, title, description, price, isVisible, anima
         </FavoriteIcon>
       )}
 
+      {/* Área que navega para a página de detalhes */}
       <Link to={`/details/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
         <DishImage src={imageURL} alt={title} />
         <DishTitle>{title}</DishTitle>

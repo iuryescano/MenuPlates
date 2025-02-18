@@ -21,13 +21,23 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { Header } from "../../components/Header/";
 import { PlateItem } from "../../components/PlateItem/";
 import { Footer } from "../../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
 
 export function EditPlate() {
   const [image, setImage] = useState(null);
-
+  const [name, setName] = useState(""); // Nome do prato
   const [ingredients, setIngredients] = useState([]); // Lista de ingredientes
   const [newIngredient, setNewIngredient] = useState(""); // Input temporário para novo ingrediente
+  const [category, setCategory] = useState(""); // Certifique-se de que é uma string
+  const [price, setPrice] = useState(""); // Preço do prato
+  const [description, setDescription] = useState(""); // Descrição do prato
+
+  const navigate = useNavigate(); // Hook para navegação
+
+    // Obtenha o user_id do localStorage
+    const user = JSON.parse(localStorage.getItem("@MenuPlate:user"));
+    const user_id = user ? user.id : null;
 
   // Função para lidar com o upload da imagem
   const handleImageUpload = (event) => {
@@ -48,6 +58,49 @@ export function EditPlate() {
   function handleRemoveIngredient(index) {
     setIngredients((prevState) => prevState.filter((_, i) => i !== index));
   }
+
+    const handleEditPlate = async () => {
+      if (!name || !category || !price || !description || ingredients.length === 0) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+    
+      try {
+        // Envia um valor padrão para Image, pois a imagem será atualizada posteriormente
+        const response = await api.put(`/plates/${plateId}`, {
+          Name: name,
+          Image: image ? image.name : "default.jpg", // ou use "" se preferir
+          Price: price,
+          Description: description,
+          category: [category],  // Lembre-se de enviar a categoria como array
+          ingredients
+        });
+        const plateId = response.data.id;
+    
+    
+        // Se houver imagem selecionada, atualiza-a com o PATCH
+        if (image) {
+          const formData = new FormData();
+          formData.append("plateimage", image);
+          formData.append("plate_id", plateId);
+    
+          await api.patch("/plates/image", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          });
+        }
+    
+        alert("Prato editado com sucesso!");
+        navigate("/"); // Redireciona para a página inicial
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          alert("Erro ao editar prato, tente novamente!");
+        }
+      }
+    };
 
   return (
     <Container>
@@ -77,23 +130,28 @@ export function EditPlate() {
             </ImageUploadSection>
             <Name>
               <p>Nome</p>
-              <input type="text" placeholder="Ex.: Salada Ceasar" />
+              <input 
+                type="text" 
+                placeholder="Ex.: Salada Ceasar" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </Name>
             <CategoryWrapper>
               <p>Categoria</p>
-              <select>
+              <select value={category} onChange={e => setCategory(e.target.value)}>
                 <option value="">Selecione uma categoria</option>
                 <option value="Refeicao">Refeição</option>
                 <option value="Sobremesa">Sobremesa</option>
-                <option value="Sucos">Sucos</option>
+                <option value="Bebidas">Sucos</option>
               </select>
             </CategoryWrapper>
           </Flex>
 
-          {/* Tags para ingredientes */}
+{/* Tags para ingredientes */}
           <Flex>
             <Tags>
-              <p>Ingredientes e Preço</p>
+              <p>Ingredientes</p>
               <div className="tags-and-price">
                 {/* Tags de ingredientes */}
                 <div className="tags">
@@ -114,25 +172,31 @@ export function EditPlate() {
                     onClick={handleAddIngredient}
                   />
                 </div>
-
               </div>
             </Tags>
             <Price>
               <p>Preço</p>
-              <input type="number" placeholder="R$ 0.00" />
+              <input 
+                type="number" 
+                placeholder="R$ 0.00" 
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
             </Price>
           </Flex>
           <Description>
             <p>Descrição</p>
-            <textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+            <textarea 
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </Description>
 
           <Buttons>
-          <DeletePlate>Deletar Prato</DeletePlate>
-          <SaveButton>Salvar Alterações</SaveButton>
+            <SaveButton onClick={handleEditPlate}>Salvar Alterações</SaveButton>
           </Buttons>
         </Content>
-
       </main>
       <Footer /> {/* Fixo no final */}
     </Container>
