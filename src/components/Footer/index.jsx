@@ -12,7 +12,7 @@ export function Footer() {
         MenuPlates
       </FooterLogo>
 
-      <FooterText>© 2023 - Todos os direitos reservados.</FooterText>
+      <FooterText>© 2025 - Desenvolvido por Iury Escano Cordeiro.</FooterText>
     </FooterContainer>
   );
 }

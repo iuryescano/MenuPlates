@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Container, 
   Content, 
@@ -21,7 +21,7 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { Header } from "../../components/Header/";
 import { PlateItem } from "../../components/PlateItem/";
 import { Footer } from "../../components/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 
 export function EditPlate() {
@@ -32,18 +32,50 @@ export function EditPlate() {
   const [category, setCategory] = useState(""); // Certifique-se de que é uma string
   const [price, setPrice] = useState(""); // Preço do prato
   const [description, setDescription] = useState(""); // Descrição do prato
+  const [plateId, setPlateId] = useState(null); // ID do prato
 
   const navigate = useNavigate(); // Hook para navegação
+  const { id } = useParams(); // Obter o ID do prato a partir dos parâmetros da URL
 
-    // Obtenha o user_id do localStorage
-    const user = JSON.parse(localStorage.getItem("@MenuPlate:user"));
-    const user_id = user ? user.id : null;
+  useEffect(() => {
+    // Definir o ID do prato
+    setPlateId(id);
+
+    // Carregar os dados do prato para edição
+    async function fetchPlate() {
+      try {
+        const response = await api.get(`/plates/${id}`);
+        const plate = response.data;
+
+        setName(plate.Name);
+        setCategory(plate.category && plate.category.length > 0 ? plate.category[0] : ""); // Verificação robusta para categoria
+        setPrice(plate.Price);
+        setDescription(plate.Description);
+        setIngredients(plate.ingredients.map(ingredient => ingredient.Name) || []); // Verificação robusta para ingredientes
+        setImage(plate.Image);
+      } catch (error) {
+        console.error("Erro ao carregar os dados do prato:", error);
+      }
+    }
+
+    fetchPlate();
+  }, [id]);
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja Realmente Remover o Prato?")
+
+    if(confirm) {
+      await api.delete(`/plates/${id}`)
+      window.alert("Prato Apagado com sucesso")
+      navigate("/");
+    }
+  }
 
   // Função para lidar com o upload da imagem
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setImage(URL.createObjectURL(file)); // Cria uma URL temporária para a imagem
+      setImage(file); // Armazena o arquivo da imagem
     }
   };
 
@@ -59,48 +91,49 @@ export function EditPlate() {
     setIngredients((prevState) => prevState.filter((_, i) => i !== index));
   }
 
-    const handleEditPlate = async () => {
-      if (!name || !category || !price || !description || ingredients.length === 0) {
-        alert("Preencha todos os campos!");
-        return;
-      }
-    
-      try {
-        // Envia um valor padrão para Image, pois a imagem será atualizada posteriormente
-        const response = await api.put(`/plates/${id}`, {
-          Name: name,
-          Image: image ? image.name : "default.jpg", // ou use "" se preferir
-          Price: price,
-          Description: description,
-          category: [category],  // Lembre-se de enviar a categoria como array
-          ingredients
+  const handleEditPlate = async () => {
+    if (!category || !image ) {
+      alert("Preencha a categoria e a imagem");
+      return;
+    }
+
+    try {
+      // Envia um valor padrão para Image, pois a imagem será atualizada posteriormente
+      const response = await api.put(`/plates/${id}`, {
+        Name: name,
+        Image: image ? image.name : "default.jpg", // ou use "" se preferir
+        Price: price,
+        Description: description,
+        category: [category],  // Lembre-se de enviar a categoria como array
+        ingredients
+      });
+
+      const updatedPlateId = response.data.id;
+
+      // Se houver imagem selecionada, atualiza-a com o PATCH
+      if (image) {
+        const formData = new FormData();
+        formData.append("plateimage", image);
+        formData.append("plate_id", updatedPlateId);
+
+        await api.patch("/plates/image", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         });
-        const plateId = response.data.id;
-    
-    
-        // Se houver imagem selecionada, atualiza-a com o PATCH
-        if (image) {
-          const formData = new FormData();
-          formData.append("plateimage", image);
-          formData.append("plate_id", plateId);
-    
-          await api.patch("/plates/image", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
-          });
-        }
-    
-        alert("Prato editado com sucesso!");
-        navigate("/"); // Redireciona para a página inicial
-      } catch (error) {
-        if (error.response) {
-          alert(error.response.data.message);
-        } else {
-          alert("Erro ao editar prato, tente novamente!");
-        }
       }
-    };
+
+      alert("Prato editado com sucesso!");
+      navigate("/"); // Redireciona para a página inicial
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Erro ao editar prato, tente novamente!");
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <Container>
@@ -109,8 +142,8 @@ export function EditPlate() {
         <Content>
           <Link to={"/"}>
             <BackPage>
-                <IoIosArrowBack />
-                  voltar
+              <IoIosArrowBack />
+              voltar
             </BackPage>
           </Link>
           <H1>Editar prato</H1>
@@ -148,7 +181,7 @@ export function EditPlate() {
             </CategoryWrapper>
           </Flex>
 
-{/* Tags para ingredientes */}
+          {/* Tags para ingredientes */}
           <Flex>
             <Tags>
               <p>Ingredientes</p>
@@ -195,6 +228,7 @@ export function EditPlate() {
 
           <Buttons>
             <SaveButton onClick={handleEditPlate}>Salvar Alterações</SaveButton>
+            <DeletePlate onClick={handleRemove}>Apagar Prato</DeletePlate>
           </Buttons>
         </Content>
       </main>

@@ -223,7 +223,7 @@ export const SaveButton = styled.button`
   margin-top: 1rem; /* Espaçamento acima */
   width: 10.75rem;
   height: 3rem;
-  background-color: #AB4D55;
+  background-color:rgb(88, 153, 121);
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -233,14 +233,14 @@ export const SaveButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: darkred;
+    background-color: rgb(63, 109, 86);
   }
 `;
 
 export const DeletePlate = styled.button`
   margin-top: 1rem; /* Espaçamento acima */
   width: 10.75rem;
-  background-color: ${({ theme }) => theme.COLORS.BLACK_800};
+  background-color: #AB4D55;
   height: 3rem;
   color: white;
   font-size: 1rem;
@@ -251,7 +251,7 @@ export const DeletePlate = styled.button`
   transition: background-color 0.3s;
   
   &:hover {
-    background-color: ${({ theme }) => theme.COLORS.BLACK_300};
+    background-color: darkred;
   }
 `;
 

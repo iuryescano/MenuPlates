@@ -52,7 +52,8 @@ export const Plate = styled.div`
   gap: 3rem;
   padding: 1rem;
   > img {
-    opacity: 75%;
+    opacity: 85%;
+    border-radius: 50%;
   }
 `;
 
@@ -134,3 +135,13 @@ export const EditButton = styled(Link)`
     background-color:rgb(80, 2, 11);
   }
 `
+
+export const CardDescription = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limita a 3 linhas */
+  -webkit-box-orient: vertical;
+  margin: 0;
+  padding: 0;
+`;
