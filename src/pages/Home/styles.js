@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Alterado de height para min-height */
   width: 100%;
 
   > main {
@@ -9,6 +11,21 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 2rem 0 6rem; /* Ajuste o último valor conforme a altura do footer */
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -121,25 +138,13 @@ export const CardBox = styled.div`
   padding: 0 1rem; /* Para dar espaço para as setas nas laterais */
   border-radius: 5px;
   /* Adicionando gradientes para opacidade nas pontas */
+  scroll-behavior: smooth;
+  transition: scroll-left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  
   &::before, &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 5rem;
-    z-index: 2; /* Mantém acima dos cards */
-    pointer-events: none; /* Permite clique nos cards mesmo sob o gradiente */
+    transition: opacity 0.3s ease;
+    opacity: ${({ $showGradient }) => ($showGradient ? 1 : 0)};
   }
-
-  &::before {
-  left: 0;
-  background: linear-gradient(to right, rgba(0, 10, 15, 0.9), transparent);
-}
-
-&::after {
-  right: 0;
-  background: linear-gradient(to left, rgba(0, 10, 15, 0.9), transparent);
-}
 `;
 
 export const Arrow = styled.button`
@@ -154,7 +159,10 @@ export const Arrow = styled.button`
   padding: 10px;
   font-size: 1.5rem;
   border-radius: 50%;
-  transition: opacity 0.1s ease;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   
 
   &:focus {
@@ -162,7 +170,8 @@ export const Arrow = styled.button`
   }
 
   &:hover {
-    opacity: 0.8;
+    transform: translateY(-30%) scale(1.1);
+    background: rgba(0, 10, 15, 0.9);
   }
 
   &.left {
@@ -173,4 +182,13 @@ export const Arrow = styled.button`
   &.right {
     right: 0; /* Fixado na direita do Refecbox */
   }
+`;
+
+export const NotFoundMessage = styled.p`
+  color: ${({ theme }) => theme.COLORS.GRAY_300};
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+  padding: 4rem 0;
+  font-family: 'Poppins';
 `;

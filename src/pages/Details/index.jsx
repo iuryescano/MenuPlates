@@ -55,7 +55,7 @@ export function Details() {
               <Content>
                 <Text>
                   <h1>{data.Name}</h1>
-                  <CardDescription>{description}</CardDescription>
+                  <CardDescription>{data.Description}</CardDescription>
                 </Text>
                 {
                   data.ingredients &&

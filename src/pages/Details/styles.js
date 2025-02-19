@@ -25,6 +25,20 @@ export const Container = styled.div`
     color: inherit;
     text-decoration: none;
   }
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeInUp 0.4s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const BackPage = styled.div`
@@ -54,6 +68,7 @@ export const Plate = styled.div`
   > img {
     opacity: 85%;
     border-radius: 50%;
+    height: 15rem;
   }
 `;
 

@@ -30,7 +30,7 @@ export function Card({ id, imageSrc, title, description, price, isVisible, anima
     : "URL-de-um-placeholder.png";
 
   return (
-    <CardContainer className={animationClass} style={{ opacity: isVisible ? 1 : 0.5 }}>
+    <CardContainer className={animationClass} >
       {isAdmin ? (
         <FavoriteIcon>
           {/* Redireciona para a página de edição passando o id do prato */}

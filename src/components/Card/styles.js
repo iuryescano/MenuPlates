@@ -16,18 +16,45 @@ export const CardContainer = styled.div`
   color: #FFF;
   border: none;
 
-  transform: scale(0.9);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0) scale(0.95);
+  opacity: 0.9;
+  will-change: transform, opacity;
 
-  &.slide-left, &.slide-right {
-    opacity: 1;
-    transform: scale(1);
+  &.slide-left {
+    animation: slideInLeft 0.6s both;
   }
 
- //remover hover do botao
+  &.slide-right {
+    animation: slideInRight 0.6s both;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(20%) scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0) scale(0.95);
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(-20%) scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0) scale(0.95);
+      opacity: 0.9;
+    }
+  }
+
   &:hover {
-    transform: scale(1);
-    opacity: 100%;
+    transform: scale(1) translateY(-5px);
+    opacity: 1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
 `;
 

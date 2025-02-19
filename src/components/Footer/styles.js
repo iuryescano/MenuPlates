@@ -6,7 +6,8 @@ export const FooterContainer = styled.footer`
   align-items: center;
   padding: 1rem 10rem;
   background-color: ${({ theme }) => theme.COLORS.BLACK_600};
-  color: ${({ theme }) => theme.COLORS.WHITE};;
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  margin-top: auto; /* Adicionado para fixar no fundo */
 `;
 
 export const FooterLogo = styled.div`
@@ -23,3 +24,4 @@ export const FooterText = styled.div`
   font-size: 14px;
   opacity: 0.5;
 `;
+
