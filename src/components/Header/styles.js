@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { DEVICE_BREAKPOINT } from '../../styles/deviceBreakpoints';
 
 // Estilos do container do Header
 export const HeaderContainer = styled.header`
@@ -8,6 +9,12 @@ export const HeaderContainer = styled.header`
   align-items: center;
   background-color: ${({ theme }) => theme.COLORS.BLACK_600};
   gap: 2.5rem;
+
+  position: sticky; // Mantém fixo no topo
+  top: 0;
+  z-index: 1000; // Garante que fique acima de outros elementos
+  height: 6.5rem;
+  width: 100%;
 
   a {
     text-decoration: none;
@@ -21,10 +28,20 @@ export const HeaderContainer = styled.header`
     padding: 0.2rem;
   }
 
-  @media (max-width: 768px) {
-    padding: 0 1rem;
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    height: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ theme }) => theme.COLORS.BLACK_600};
+
+    position: sticky; // Mantém fixo no topo
+    top: 0;
+    z-index: 1000; // Garante que fique acima de outros elementos
+    height: 6.5rem;
+    width: 100%;
   }
-`;
+    `;
 
 // Estilo para o nome "MenuPlates"
 export const Logo = styled.div`
@@ -34,6 +51,15 @@ export const Logo = styled.div`
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
   gap: 1rem;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    margin-left: 20rem;
+  }
+
 `;
 
 export const SearchContainer = styled.div`
@@ -57,6 +83,12 @@ export const SearchContainer = styled.div`
 
   form {
     width: 100%;
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    form, div {
+      visibility: hidden;
+    }
   }
 `;
 
@@ -117,6 +149,10 @@ export const OrdersBox = styled.div`
   text-align: center;
   gap: 0.5rem;
   font-family: 'Poppins';
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      visibility: hidden;
+  }
 `;
 
 // Estilo para o botão de sair
@@ -134,4 +170,8 @@ export const LogoutButton = styled.div`
     width: 24px;
     height: 24px;
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      visibility: hidden;
+    }
 `;

@@ -1,20 +1,27 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Alterado de height para min-height */
+  min-height: 100vh;
   width: 100%;
 
   > main {
+    flex: 1;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 2rem 0 6rem; /* Ajuste o último valor conforme a altura do footer */
+    align-items: center;
+    padding: 2rem 0 6rem; // Espaço para o footer
   }
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeInUp 0.8s ease both;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    > main {
+      padding: 1rem 0 14rem; // Aumente conforme altura do footer mobile
+    max-width: 100%;
+    
+    }
   }
 
   @keyframes fadeInUp {
@@ -38,6 +45,13 @@ export const Banner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    height: 10rem;
+    width: 30rem;
+    margin-top: 1rem;
+  }
+
 `;
 
 export const SvgImage = styled.img`
@@ -47,6 +61,10 @@ export const SvgImage = styled.img`
   transform: translateY(-100%);
   width: auto;
   height: 150%;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    height: 12rem;
+  }
 `;
 
 export const TextContainer = styled.div`
@@ -54,6 +72,11 @@ export const TextContainer = styled.div`
   text-align: left;
   margin-left: 37rem;
   text-align: center;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    margin-left: 14rem;
+    text-align: left;
+  }
 `;
 
 export const Title = styled.h1`
@@ -62,7 +85,7 @@ export const Title = styled.h1`
   font-weight: 400;
   margin: 0;
   @media (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
   }
 `;
 
@@ -87,6 +110,10 @@ export const Refecdad = styled.div`
     > h1 {
       margin-top: 2.5rem;
     }
+
+    @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      width: 28rem;
+  }
   `;
   
 export const Refecbox = styled.div`
@@ -94,6 +121,11 @@ export const Refecbox = styled.div`
   display: flex;
   flex-direction: column;
   position: relative; /* Para manter as setas e os gradientes posicionados corretamente */
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    margin-top: 2rem;
+    width: 28rem;
+  }
 `;
 
 export const Sobredad = styled.div`
@@ -102,6 +134,10 @@ export const Sobredad = styled.div`
     > h1 {
       margin-top: 2.5rem;
     }
+
+    @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      width: 28rem;
+  }
   
   `;
 export const Sobrebox = styled.div`
@@ -111,6 +147,11 @@ export const Sobrebox = styled.div`
   flex-direction: column;
   gap: 23px;
   position: relative; /* Para manter as setas e os gradientes posicionados corretamente */
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      width: 28rem;
+      margin-top: 2rem;
+  }
 `;
 
 export const Drinkdad = styled.div`
@@ -119,8 +160,12 @@ export const Drinkdad = styled.div`
     > h1 {
       margin-top: 2.5rem;
     }
-  
+
+    @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      width: 28rem;
+  }
   `;
+
 export const Drinkbox = styled.div`
   margin-top: 1rem;
   width: 70rem;
@@ -128,6 +173,11 @@ export const Drinkbox = styled.div`
   flex-direction: column;
   gap: 23px;
   position: relative; /* Para manter as setas e os gradientes posicionados corretamente */
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      width: 28rem;
+      margin-top: 2rem;
+  }
 `;
 
 export const CardBox = styled.div`
@@ -144,6 +194,10 @@ export const CardBox = styled.div`
   &::before, &::after {
     transition: opacity 0.3s ease;
     opacity: ${({ $showGradient }) => ($showGradient ? 1 : 0)};
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    width: 90%;
   }
 `;
 

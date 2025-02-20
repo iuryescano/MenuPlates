@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
@@ -28,6 +29,13 @@ export const Content = styled.div`
   box-sizing: border-box; /* Inclui padding/border no cálculo da largura/altura */
   overflow-y: auto; /* Adiciona rolagem vertical somente se necessário */
   display: flex;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const LogoBox = styled.div`
@@ -36,6 +44,10 @@ export const LogoBox = styled.div`
   margin-bottom: 2rem;
   width: 50%;
   align-items: center;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    margin-bottom: 0rem;
+  }  
 `
 
 export const Logo = styled.div`
@@ -78,6 +90,14 @@ export const Border = styled.div`
     font-family: Poppins;
     font-weight: 300;
     font-size: 1rem;
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    background-color: ${({ theme }) => theme.COLORS.BLACK_400};
+
+    h1 {
+      visibility: hidden;
+    }
   }
 `
 
