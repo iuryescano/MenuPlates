@@ -108,7 +108,7 @@ export function Home() {
 
   return (
     <Container>
-      <Header />
+      <Header/>
       <main>
       {!searchTerm && (
         <Banner>

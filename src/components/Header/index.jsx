@@ -7,8 +7,12 @@ import { RxExit } from "react-icons/rx";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 
-export function Header() {
-    const isAdmin = true;
+import { USER_ROLE } from '../../utils/roles';
+
+export function Header( ) {
+    const { user } = useAuth();
+    const isAdmin = user?.role === USER_ROLE.ADMIN;
+    
     const { signOut } = useAuth();
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
@@ -18,8 +22,10 @@ export function Header() {
         // Navega para a Home passando o termo no state
         navigate("/", { state: { search } });
     };
+    
 
     return (
+
         <HeaderContainer>
         <Link to={"/"}>
             <Logo>
@@ -28,6 +34,7 @@ export function Header() {
             </svg>
             MenuPlates
             </Logo>
+            <p>{user.role}</p>
         </Link>
 
         <SearchContainer>

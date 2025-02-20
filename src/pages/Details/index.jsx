@@ -3,6 +3,9 @@ import { Footer } from "../../components/Footer/";
 import { Container, BackPage, Plate, Text, Tags, Content, IncludeButton, Includerefec, QuantityControl, EditButton, CardDescription } from "../Details/styles";
 import { Tag } from "../../components/Tag";
 
+import { useAuth } from "../../hooks/auth";
+import { USER_ROLE } from "../../utils/roles"
+
 import salada_g from '../../assets/salada_g.png';
 import { IoIosArrowBack } from "react-icons/io";
 import { useState, useEffect} from "react";
@@ -15,11 +18,13 @@ export function Details() {
   const handleIncrease = () => setQuantity(quantity + 1);
   const handleDecrease = () => quantity > 0 && setQuantity(quantity - 1);
 
-  const isAdmin = true; // Isso será controlado futuramente via banco de dados
-
+  
   const params = useParams();
-
+  
   const [ data, setData ] = useState(null);
+  
+  const { user } = useAuth();
+  const isAdmin = user?.role === USER_ROLE.ADMIN; // Isso será controlado futuramente via banco de dados
 
   useEffect(() => {
     async function fetchPlate(){
@@ -72,16 +77,18 @@ export function Details() {
                   <EditButton to={`/editplate/${params.id}`}>
                     Editar
                   </EditButton>
-                ):(<Includerefec>
-                  <QuantityControl>
-                    <button  onClick={handleDecrease}>-</button>
-                    <span>{quantity}</span>
-                    <button onClick={handleIncrease}>+</button>
-                  </QuantityControl>
-                  <IncludeButton onClick={() => quantity > 0 && alert(`Incluído ${quantity}`)} disabled={quantity === 0}>
-                    Incluir ∙ R$ 25,00
-                  </IncludeButton>
-                </Includerefec>
+                ):(
+                
+                  <Includerefec>
+                    <QuantityControl>
+                      <button  onClick={handleDecrease}>-</button>
+                      <span>{quantity}</span>
+                      <button onClick={handleIncrease}>+</button>
+                    </QuantityControl>
+                    <IncludeButton onClick={() => quantity > 0 && alert(`Incluído ${quantity}`)} disabled={quantity === 0}>
+                      Incluir ∙ R$ ${data.Price.toFixed(2)}
+                    </IncludeButton>
+                  </Includerefec>
                 ) }
 
               </Content>

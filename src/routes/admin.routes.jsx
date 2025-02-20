@@ -5,7 +5,7 @@ import { Home } from '../pages/Home';
 import { NewPlate } from '../pages/NewPlate';
 import { EditPlate } from '../pages/EditPlate';
 
-export function AppRoutes(){
+export function AdminRoutes(){
   return (
     <Routes>
       <Route path="/" element={<Home />} />

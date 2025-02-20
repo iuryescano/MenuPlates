@@ -14,6 +14,13 @@ export const HeaderContainer = styled.header`
     color: inherit;
   }
 
+  p {
+    color: #82F3FF;
+    display: flex;
+    justify-content: end;
+    padding: 0.2rem;
+  }
+
   @media (max-width: 768px) {
     padding: 0 1rem;
   }
