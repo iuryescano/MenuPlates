@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
@@ -39,6 +40,32 @@ export const Container = styled.div`
       transform: translateY(0);
     }
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+
+    > main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Centraliza verticalmente */
+      align-items: center; /* Centraliza horizontalmente */
+      flex: 1; /* Garante que o main ocupe o espaço restante */
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
 `;
 
 export const BackPage = styled.div`
@@ -70,16 +97,40 @@ export const Plate = styled.div`
     border-radius: 50%;
     height: 15rem;
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 1rem;
+    > img {
+      opacity: 85%;
+      border-radius: 50%;
+      height: 15rem;
+    }
+}
 `;
 
 export const Text = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    align-items: center;
+  }
 `;
 
 export const Tags = styled.div`
   display: flex;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Content = styled.div`
@@ -141,13 +192,20 @@ export const EditButton = styled(Link)`
   font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
-  width: 25%;
+  width: 100%;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.3s ease;
 
   &:hover {
     background-color:rgb(80, 2, 11);
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 19.75rem;
   }
 `
 

@@ -28,7 +28,7 @@ export const CardContainer = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 18rem;
+    height: 21rem;
     gap: 13px;
     padding: 20px;
     border-radius: 8px;
@@ -100,6 +100,8 @@ export const DishTitle = styled.h3`
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
   }
 `;
 
@@ -111,6 +113,7 @@ export const DishDescription = styled.p`
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    visibility: hidden;
   }
 `;
 
@@ -121,8 +124,9 @@ export const DishPrice = styled.span`
   font-family: 'Roboto', sans-serif;
 
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-bottom: 0.7rem;
+    opacity: 1;
   }
 `;
 
@@ -186,8 +190,8 @@ export const IncludeButton = styled.button`
   }
   
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
-    background-color: red;
-    padding: 0.3rem 0.6rem;
+    background-color: #750310;
+    padding: 0.6rem 3.5rem;
     font-size: 12px;
     font-weight: bold;
     border-radius: 2.5px;
@@ -237,5 +241,9 @@ export const Includerefec = styled.div`
   gap: 10px;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    flex-direction: column;
+}
 `
 

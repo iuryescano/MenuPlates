@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
@@ -21,6 +22,9 @@ export const Container = styled.div`
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
   }
 `;
 
@@ -125,6 +129,11 @@ export const Flex = styled.div`
   display: flex;
   align-items: flex-start; /* Alinha todos os itens no topo */
   gap: 1rem; /* Espaçamento horizontal entre os campos */
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    flex-direction:column;
+    justify-content: center;
+  }
 `;
 
 export const CategoryWrapper = styled.div`
@@ -158,6 +167,12 @@ export const CategoryWrapper = styled.div`
   > select:hover {
     border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    select {
+      width: 31rem;
+    }
+  }
 `;
 
 export const Tags = styled.div`
@@ -176,6 +191,10 @@ export const Tags = styled.div`
     background-color: ${({ theme }) => theme.COLORS.BLACK_800};
     padding: 0.8rem 0.5rem 0.5rem;
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    max-width: 95%;
+  }
 `;
 
 export const Price = styled.div`
@@ -191,6 +210,14 @@ export const Price = styled.div`
       color: ${({ theme }) => theme.COLORS.WHITE};
       height: 3.5rem;
       width: 13rem;
+    }
+
+    @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      gap: 1rem;
+      margin-left: 1.5rem;
+      > input {
+        width: 30.5rem;
+      }
     }
   `;
 
@@ -223,7 +250,7 @@ export const SaveButton = styled.button`
   margin-top: 1rem; /* Espaçamento acima */
   width: 10.75rem;
   height: 3rem;
-  background-color:rgb(88, 153, 121);
+  background-color: #AB4D55;
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -233,14 +260,18 @@ export const SaveButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: rgb(63, 109, 86);
+    background-color:rgb(122, 55, 61);
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    background-color: ${({ theme }) => theme.COLORS.RED_400}
   }
 `;
 
 export const DeletePlate = styled.button`
   margin-top: 1rem; /* Espaçamento acima */
   width: 10.75rem;
-  background-color: #AB4D55;
+  background-color: ${({ theme }) => theme.COLORS.BLACK_800};
   height: 3rem;
   color: white;
   font-size: 1rem;
@@ -251,12 +282,25 @@ export const DeletePlate = styled.button`
   transition: background-color 0.3s;
   
   &:hover {
-    background-color: darkred;
+    background-color: ${({ theme }) => theme.COLORS.BLACK_500}
+  }
+
+  
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    background-color: ${({ theme }) => theme.COLORS.BLACK_800}
   }
 `;
 
 export const Buttons = styled.div`
-display: flex;
-gap: 1rem;
-margin-left: 64%;
+  display: flex;
+  gap: 1rem;
+  margin-left: 64%;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    justify-content:space-between;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0%;
+    gap: 8.9rem;
+  }
 `;

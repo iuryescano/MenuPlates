@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   display: flex;
@@ -112,12 +113,19 @@ export const Name = styled.div`
 
   > input {
     width: 25rem;
-    padding: 0.5rem;
+    padding: 0.9rem;
     border-radius: 0.5rem;
     border: none;
     background-color: ${({ theme }) => theme.COLORS.BLACK_800};
     color: ${({ theme }) => theme.COLORS.WHITE};
     height: 3rem;
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    > input {
+      width: 32rem;
+      padding: 0.9rem;
+    }
   }
 `;
 
@@ -125,6 +133,11 @@ export const Flex = styled.div`
   display: flex;
   align-items: flex-start; /* Alinha todos os itens no topo */
   gap: 1rem; /* Espaçamento horizontal entre os campos */
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const CategoryWrapper = styled.div`
@@ -158,6 +171,12 @@ export const CategoryWrapper = styled.div`
   > select:hover {
     border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    > select {
+      width: 32rem;
+    }
+  }
 `;
 
 export const Tags = styled.div`
@@ -176,6 +195,10 @@ export const Tags = styled.div`
     background-color: ${({ theme }) => theme.COLORS.BLACK_800};
     padding: 0.8rem 0.5rem 0.5rem;
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    max-width: 97%;
+  }
 `;
 
 export const Price = styled.div`
@@ -191,6 +214,13 @@ export const Price = styled.div`
       color: ${({ theme }) => theme.COLORS.WHITE};
       height: 3.5rem;
       width: 13rem;
+    }
+
+    @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+      margin-left: 1.5rem;
+      > input {
+        width: 31rem;
+      }
     }
   `;
 
@@ -235,6 +265,11 @@ export const SaveButton = styled.button`
   &:hover {
     background-color: darkred;
   }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    width: 30.5rem;
+    height: 4rem;
+  }
 `;
 
 export const DeletePlate = styled.button`
@@ -259,4 +294,11 @@ export const Buttons = styled.div`
 display: flex;
 gap: 1rem;
 margin-left: 80.5%;
+
+@media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0%;
+  }
 `;

@@ -227,8 +227,8 @@ export function EditPlate() {
           </Description>
 
           <Buttons>
-            <SaveButton onClick={handleEditPlate}>Salvar Alterações</SaveButton>
             <DeletePlate onClick={handleRemove}>Apagar Prato</DeletePlate>
+            <SaveButton onClick={handleEditPlate}>Salvar Alterações</SaveButton>
           </Buttons>
         </Content>
       </main>

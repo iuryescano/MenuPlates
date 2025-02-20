@@ -4,16 +4,18 @@ import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakpoints";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh; /* Garante que o container ocupa toda a altura da tela */
   width: 100%;
 
+  /* Evita rolagem lateral */
+  overflow-x: hidden;
+
   > main {
-    flex: 1;
-    width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 2rem 0 6rem; // Espaço para o footer
+    flex-direction: column;
+    flex: 1; /* Faz o conteúdo expandir para ocupar o espaço disponível */
   }
 
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
@@ -94,6 +96,10 @@ export const TitleRefec = styled.h1`
   font-size: 2rem;
   font-family: 'Poppins';
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
   `;
 
 export const Description = styled.p`
