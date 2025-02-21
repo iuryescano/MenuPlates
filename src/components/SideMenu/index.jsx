@@ -20,7 +20,9 @@ export function SideMenu() {
   return (
     <Container>
       <Header>
-        <IoClose/>
+        <button>
+          <IoClose/>
+        </button>
         <p>Menu</p>
       </Header>
 

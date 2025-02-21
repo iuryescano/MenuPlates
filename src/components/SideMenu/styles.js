@@ -30,6 +30,14 @@ export const Header = styled.div`
   svg {
     font-size: 2.5rem;
   }
+
+  button {
+    background: none;
+    color: white;
+    border: none;
+    background: none;
+    
+  }
 `;
 
 export const Content = styled.div`
