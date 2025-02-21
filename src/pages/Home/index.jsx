@@ -8,6 +8,7 @@ import {
 } from "./styles";
 import { Header } from "../../components/Header/";
 import { Footer } from '../../components/Footer';
+import { SideMenu } from '../../components/SideMenu';
 import yourSvgImage from '../../assets/maskgroup.png';
 import { Card } from "../../components/Card/";
 import { api } from '../../services/api';
@@ -109,6 +110,7 @@ export function Home() {
   return (
     <Container>
       <Header/>
+      <SideMenu isOpen={"true"}></SideMenu>
       <main>
       {!searchTerm && (
         <Banner>

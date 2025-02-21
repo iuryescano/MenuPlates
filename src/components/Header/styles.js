@@ -33,7 +33,8 @@ export const HeaderContainer = styled.header`
     padding: 1rem;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    
   }
     `;
 
@@ -45,6 +46,7 @@ export const Logo = styled.div`
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
   gap: 1rem;
+
   p {
     font-size: 1rem;
     margin-top: 0.3rem;
@@ -55,6 +57,7 @@ export const Logo = styled.div`
     align-items: center;
     justify-content: center;
     margin-right: 10rem;
+    width: 14rem;
     font-size: 1.4rem;
     gap: 0.5rem;
     flex: 1;
@@ -215,17 +218,18 @@ export const Content = styled.div`
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: solid 1px red;
-    gap: 2rem;
-    width: 90%;
-    padding: 0rem;
-
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    gap: 1rem;
+    border: none;
 
     p {
       margin: 0;
       font-size: 0.8rem;
       order: 2;
+      border: none;
+      white-space: nowrap;
     }
   }
 `;
