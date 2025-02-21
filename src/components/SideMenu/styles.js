@@ -1,12 +1,22 @@
 import styled from 'styled-components';
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakpoints"
 
-export const Container = styled.div`
+export const Container = styled.aside`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   z-index: 9999;
+  display: none;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}){
+
+    
+    &[data-menu-is-open="true"] {
+      display: block;
+    }
+  }
 `;
 
 export const Header = styled.div`

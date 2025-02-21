@@ -5,8 +5,9 @@ import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
 
-export function SideMenu() {
+export function SideMenu({menuIsOpen, onCloseMenu}) {
   const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
@@ -15,15 +16,27 @@ export function SideMenu() {
       e.preventDefault();
       // Navega para a Home passando o termo no state
       navigate("/", { state: { search } });
+      onCloseMenu(); // Fecha o menu após navegar
   };
 
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
+    }
+  };
+
+  const { signOut } = useAuth();
+
   return (
-    <Container>
+    <Container data-menu-is-open={menuIsOpen}>
       <Header>
-        <button>
-          <IoClose/>
-        </button>
-        <p>Menu</p>
+        { menuIsOpen &&
+          <button onClick={onCloseMenu}>
+            <IoClose/>
+          </button>
+        }
+          <p>Menu</p>
       </Header>
 
       <Content>
@@ -37,13 +50,14 @@ export function SideMenu() {
                 placeholder="Busque por pratos ou ingredientes" 
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={handleKeyPress} // Adiciona este handler
             />
             </form>
         </SearchContainer>
 
         <Section>
           <Link to={"/newplate"}>Novo Prato</Link>
-          <a>Sair</a>
+          <Link to={"/"} onClick={signOut}>Sair</Link>
         </Section>
       </Content>
 

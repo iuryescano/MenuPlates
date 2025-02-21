@@ -67,9 +67,8 @@ export const Logo = styled.div`
       width: 20px;
       height: 24px;
     }
-
-
   }
+
 
 `;
 

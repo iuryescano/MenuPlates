@@ -11,7 +11,7 @@ import { MdOutlineFormatListBulleted } from "react-icons/md";
 
 import { USER_ROLE } from '../../utils/roles';
 
-export function Header( ) {
+export function Header( {onOpenMenu }) {
     const { user } = useAuth();
     const isAdmin = user?.role === USER_ROLE.ADMIN;
     
@@ -30,7 +30,7 @@ export function Header( ) {
 
         <HeaderContainer>
         <Content>
-            <Menu>
+            <Menu onClick={onOpenMenu}>
                 <MdOutlineFormatListBulleted/>
             </Menu>
             <Link to={"/"}>

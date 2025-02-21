@@ -62,6 +62,9 @@ export function Home() {
     return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
   };
 
+  //Controle de estado para abrir menu no mobile
+  const [menuIsOpen, setMenuIsOpen ] = useState(false);
+
   useEffect(() => {
     async function fetchGlobalPlates() {
       try {
@@ -109,8 +112,8 @@ export function Home() {
 
   return (
     <Container>
-      <Header/>
-      <SideMenu isOpen={"true"}></SideMenu>
+      <Header onOpenMenu={() => setMenuIsOpen(true)} />
+      <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={()=>setMenuIsOpen(false)}></SideMenu>
       <main>
       {!searchTerm && (
         <Banner>
