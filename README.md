@@ -56,6 +56,5 @@ Um projeto criado para atender à necessidade de apresentar pratos de restaurant
 4. Faça o push para a branch (`git push origin feature/sua-feature`)
 5. Abra um Pull Request
 
-## Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## Deploy Frontend
+**https://menu-plates.netlify.app/**
